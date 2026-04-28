@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tração Jurídica</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --silver: #e8e8e8;
@@ -77,7 +77,6 @@ body::before {
   box-shadow: 0 10px 40px rgba(255,255,255,0.3);
 }
 
-/* ── SILVER LINE ── */
 .silver-line {
   display: block;
   width: 60px;
@@ -86,6 +85,13 @@ body::before {
   margin: 18px 0 24px;
 }
 .silver-line.center { margin: 18px auto 24px; }
+
+/* ── SILVER TEXT ── */
+@keyframes silverShine {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
 /* ── HERO ── */
 .hero {
@@ -100,7 +106,7 @@ body::before {
 .hero::after {
   content: '';
   position: absolute;
-  right: -10%;
+  left: -10%;
   top: 50%;
   transform: translateY(-50%);
   width: 55%;
@@ -116,46 +122,6 @@ body::before {
   align-items: center;
 }
 
-/* event name tag */
-.event-name {
-  display: inline-block;
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  font-weight: 900;
-  font-style: italic;
-  background: linear-gradient(135deg, #aaa 0%, #fff 35%, #e0e0e0 55%, #bbb 80%, #fff 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: silverShine 3s ease infinite;
-  letter-spacing: -0.5px;
-  margin-bottom: 10px;
-  display: block;
-}
-
-@keyframes silverShine {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.hero-text h1 {
-  font-size: clamp(1.5rem, 3.5vw, 2.4rem);
-  line-height: 1.2;
-  color: #ccc;
-  font-weight: 700;
-  margin-top: 4px;
-}
-
-.hero-text p {
-  margin-top: 18px;
-  color: #999;
-  font-size: 1rem;
-  max-width: 480px;
-  line-height: 1.75;
-}
-
 .hero-date-tag {
   display: inline-block;
   font-size: 0.72rem;
@@ -165,10 +131,34 @@ body::before {
   border: 1px solid rgba(200,200,200,0.25);
   padding: 6px 14px;
   border-radius: 2px;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
-/* hero image with frame */
+.event-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 900;
+  font-style: italic;
+  background: linear-gradient(135deg, #888 0%, #fff 30%, #e0e0e0 50%, #bbb 70%, #fff 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: silverShine 3s ease infinite;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.hero-text p {
+  margin-top: 4px;
+  color: #999;
+  font-size: 1rem;
+  max-width: 460px;
+  line-height: 1.75;
+}
+
 .hero-img {
   position: relative;
   flex-shrink: 0;
@@ -201,7 +191,6 @@ body::before {
   object-fit: cover;
 }
 
-/* hero text right-aligned on desktop */
 .fade-up {
   opacity: 0;
   transform: translateY(30px);
@@ -213,7 +202,7 @@ body::before {
 
 @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
-/* ── ABOUT ── */
+/* ── ABOUT (novo: assuma o comando) ── */
 .about {
   padding: 90px 0;
   background: var(--dark-2);
@@ -221,8 +210,41 @@ body::before {
   border-bottom: 1px solid #1a1a1a;
 }
 
-.about h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: #fff; max-width: 640px; }
-.about p { margin-top: 16px; color: #999; max-width: 620px; line-height: 1.8; }
+.about-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+}
+
+.about-text { flex: 1; }
+
+.about-text h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  color: #fff;
+  max-width: 520px;
+  line-height: 1.2;
+}
+
+.about-text p {
+  margin-top: 16px;
+  color: #999;
+  max-width: 520px;
+  line-height: 1.85;
+}
+
+.about-img {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.about-img img {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 8px;
+  display: block;
+  border: 1px solid #1e1e1e;
+}
 
 /* ── PARA QUEM ── */
 .audience { padding: 90px 0; }
@@ -261,8 +283,6 @@ body::before {
 .price-banner {
   padding: 70px 0;
   background: #fff;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
   text-align: center;
 }
 
@@ -284,12 +304,12 @@ body::before {
 
 .price-currency {
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.32em;
+  font-size: 0.28em;
   font-weight: 600;
   vertical-align: super;
   color: #444;
   letter-spacing: 0;
-  margin-right: 4px;
+  margin-right: 6px;
 }
 
 .price-note {
@@ -302,13 +322,12 @@ body::before {
 
 .price-banner .btn {
   background: linear-gradient(135deg, #222 0%, #555 40%, #333 100%);
+  background-size: 300% 300%;
   color: #fff;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
 
-.price-banner .btn:hover {
-  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
-}
+.price-banner .btn:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.35); }
 
 /* ── BENEFITS ── */
 .benefits {
@@ -325,7 +344,7 @@ body::before {
 .benefit-card {
   background: var(--dark-3);
   border: 1px solid #1e1e1e;
-  border-left: 3px solid rgba(255,255,255,0.4);
+  border-left: 3px solid rgba(255,255,255,0.35);
   padding: 28px;
   border-radius: 6px;
   opacity: 0;
@@ -343,11 +362,7 @@ body::before {
   background: #181818;
 }
 
-.benefit-icon {
-  font-size: 1.6rem;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
+.benefit-icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 2px; }
 
 .benefit-body h3 {
   font-family: 'DM Sans', sans-serif;
@@ -362,7 +377,6 @@ body::before {
 /* ── PROGRAM ── */
 .program { padding: 90px 0; border-top: 1px solid #1a1a1a; }
 .program h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); }
-
 .program-list { margin-top: 40px; display: flex; flex-direction: column; }
 
 .program-item {
@@ -518,22 +532,26 @@ footer p { font-size: 0.8rem; color: #444; }
 
 /* ── DESKTOP ── */
 @media (min-width: 768px) {
+  /* hero: foto esquerda, texto direita */
   .hero-inner {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     gap: 60px;
   }
-
-  .hero-text {
-    flex: 1;
-    text-align: right;
-  }
-
+  .hero-text { flex: 1; text-align: right; }
   .hero-text p { margin-left: auto; }
   .silver-line.hero-line { margin-left: auto; margin-right: 0; }
-
   .hero-img { flex: 0 0 auto; order: -1; }
+
+  /* about: texto esquerda, foto direita */
+  .about-inner {
+    flex-direction: row;
+    align-items: center;
+    gap: 60px;
+  }
+  .about-img { width: auto; }
+  .about-img img { max-width: 460px; }
 
   .audience-grid { grid-template-columns: 1fr 1fr; }
   .benefits-grid { grid-template-columns: 1fr 1fr; }
@@ -546,7 +564,6 @@ footer p { font-size: 0.8rem; color: #444; }
     justify-content: center;
     gap: 70px;
   }
-
   .depo-text { text-align: left; }
 }
 </style>
@@ -566,7 +583,6 @@ footer p { font-size: 0.8rem; color: #444; }
     <div class="fade-up">
       <span class="hero-date-tag">Evento Presencial · 22.05.2026</span>
       <span class="event-name">Tração Jurídica</span>
-      <h1>Assuma o comando do seu escritório de advocacia</h1>
     </div>
     <div class="fade-up">
       <span class="silver-line hero-line"></span>
@@ -581,14 +597,24 @@ footer p { font-size: 0.8rem; color: #444; }
 </div>
 </section>
 
-<!-- SOBRE O EVENTO -->
+<!-- ASSUMA O COMANDO -->
 <section class="about">
 <div class="container">
-  <h2>Mais do que conteúdo. Um ambiente de decisão.</h2>
-  <span class="silver-line"></span>
-  <p>Se o seu escritório depende exclusivamente de você, existe um problema estrutural. Ignorar isso custa caro: estagnação, sobrecarga e crescimento limitado.</p>
-  <p style="margin-top:12px">O Tração Jurídica nasce para mudar esse cenário. Aqui, você assume o papel de gestor com visão estratégica, estrutura e direção clara para crescer com consistência.</p>
-  <a href="https://wa.me/5521975076447?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
+  <div class="about-inner">
+
+    <div class="about-text">
+      <h2>Assuma o comando do seu escritório de advocacia</h2>
+      <span class="silver-line"></span>
+      <p>Se o seu escritório depende exclusivamente de você, existe um problema estrutural. Ignorar isso custa caro: estagnação, sobrecarga e crescimento limitado.</p>
+      <p style="margin-top:12px">O Tração Jurídica nasce para mudar esse cenário. Aqui, você assume o papel de gestor com visão estratégica, estrutura e direção clara para crescer com consistência.</p>
+      <a href="https://wa.me/5521975076447?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
+    </div>
+
+    <div class="about-img">
+      <img src="https://i.imgur.com/cHdD3TW.jpeg" alt="Ambiente do evento">
+    </div>
+
+  </div>
 </div>
 </section>
 
@@ -708,7 +734,7 @@ footer p { font-size: 0.8rem; color: #444; }
       <p class="subtitle">Advogada · Empresária Jurídica · Mentora</p>
       <span class="silver-line"></span>
       <p>Advogada, especialista em Direito Previdenciário e Planejamento Previdenciário. Empresária jurídica à frente do escritório Knust Advocacia Especializada.</p>
-      <p>Palestrante, professora de pós-graduação e mentora de advogados nas áreas de gestão de escritório e Direito Previdenciário. Presidente da Comissão de Direito Previdenciário da OAB/DF.</p>
+      <p>Palestrante, professora de pós-graduação e mentora de advogados nas áreas de gestão de escritório e Direito Previdenciário. Presidente da Comissão de Direito Previdenciário da OAB de Duque de Caxias/RJ.</p>
       <p>Atua diretamente na gestão do próprio escritório, vivenciando na prática os desafios da advocacia e do empreendedorismo jurídico. Como mentora, orienta advogados na estruturação, organização e crescimento sustentável de seus escritórios.</p>
       <p>Seu trabalho une prática previdenciária com gestão estratégica, com foco em lucratividade, posicionamento e desenvolvimento de negócios jurídicos mais eficientes.</p>
     </div>
@@ -728,9 +754,9 @@ footer p { font-size: 0.8rem; color: #444; }
     </div>
     <div class="video-wrapper">
       <iframe
-        src="https://drive.google.com/file/d/1G0asuON451Jg8Q15IxcEZaOb_inSzl2m/preview"
+        src="https://drive.google.com/file/d/1G0asuON451Jg8Q15IxcEZaOb_inSzl2m/preview?autoplay=1"
         title="Depoimento"
-        allow="autoplay"
+        allow="autoplay; fullscreen"
         allowfullscreen>
       </iframe>
     </div>
@@ -764,7 +790,7 @@ footer p { font-size: 0.8rem; color: #444; }
       <a href="https://wa.me/5521975076447?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
     </div>
     <div class="details-img">
-      <img src="https://i.imgur.com/cHdD3TW.jpeg" alt="Local do evento">
+      <img src="https://static.wixstatic.com/media/6522c5_5af5c75e3ff843bea33f69e907bc5ea1~mv2.jpg/v1/fit/w_930,h_562,q_90,enc_avif,quality_auto/6522c5_5af5c75e3ff843bea33f69e907bc5ea1~mv2.jpg" alt="Local do evento">
     </div>
   </div>
 </div>
