@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tração Jurídica</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #c9a84c;
+  --gold-light: #e8c97a;
+  --dark: #080808;
+  --dark-2: #0f0f0f;
+  --dark-3: #151515;
+  --red-dark: #1a0000;
+  --text: #e8e8e8;
+  --muted: #888;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--dark);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ── TYPOGRAPHY ── */
+h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+/* ── NOISE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.4;
+}
+
+/* ── CONTAINER ── */
+.container {
+  width: 90%;
+  max-width: 1080px;
+  margin: auto;
+}
+
+/* ── BUTTON ── */
+.btn {
+  display: inline-block;
+  padding: 15px 32px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold));
+  background-size: 200% 200%;
+  color: #000;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+  margin-top: 24px;
+  transition: background-position 0.4s, transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 4px 20px rgba(201,168,76,0.25);
+  animation: btnShimmer 3s ease infinite;
+}
+
+@keyframes btnShimmer {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(201,168,76,0.45);
+}
+
+/* ── DIVIDER ── */
+.gold-line {
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin: 18px 0 24px;
+}
+
+.gold-line.center { margin: 18px auto 24px; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 80px 0;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  right: -10%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 55%;
+  height: 110%;
+  background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+}
+
+.hero-label {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(201,168,76,0.35);
+  padding: 6px 14px;
+  border-radius: 2px;
+  margin-bottom: 18px;
+}
+
+.hero-text h1 {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  line-height: 1.15;
+  color: #fff;
+}
+
+.hero-text h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-text p {
+  margin-top: 18px;
+  color: #aaa;
+  font-size: 1.05rem;
+  max-width: 500px;
+  line-height: 1.75;
+}
+
+.hero-img {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.hero-img::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.hero-img img {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 8px;
+  display: block;
+  filter: brightness(0.95) contrast(1.05);
+}
+
+/* fade-in on load */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s ease forwards;
+}
+.fade-up:nth-child(1) { animation-delay: 0.1s; }
+.fade-up:nth-child(2) { animation-delay: 0.3s; }
+.fade-up:nth-child(3) { animation-delay: 0.5s; }
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── ABOUT ── */
+.about {
+  padding: 90px 0;
+  background: var(--dark-2);
+  border-top: 1px solid #1a1a1a;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.about h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  color: #fff;
+  max-width: 640px;
+}
+
+.about p {
+  margin-top: 16px;
+  color: #999;
+  max-width: 620px;
+  line-height: 1.8;
+}
+
+/* ── PARA QUEM ── */
+.audience {
+  padding: 90px 0;
+}
+
+.audience-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.card {
+  padding: 36px;
+  border-radius: 8px;
+  border: 1px solid #1e1e1e;
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.card.positive {
+  background: #101010;
+}
+
+.card.positive h3 {
+  color: var(--gold);
+}
+
+.card.negative {
+  background: var(--red-dark);
+  border-color: #2e0000;
+}
+
+.card.negative h3 {
+  color: #e06060;
+}
+
+.card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card li {
+  font-size: 0.97rem;
+  color: #ccc;
+  padding-left: 4px;
+  line-height: 1.5;
+}
+
+/* ── BENEFITS ── */
+.benefits {
+  padding: 90px 0;
+  background: var(--dark-2);
+  border-top: 1px solid #1a1a1a;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.section-header h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  color: #fff;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.benefit-card {
+  background: var(--dark-3);
+  border: 1px solid #1e1e1e;
+  border-left: 3px solid var(--gold);
+  padding: 28px 28px 28px 28px;
+  border-radius: 6px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.3s;
+}
+
+.benefit-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.benefit-card:hover {
+  border-left-color: var(--gold-light);
+  background: #181818;
+}
+
+.benefit-card .num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: rgba(201,168,76,0.18);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.benefit-card h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.benefit-card p {
+  font-size: 0.92rem;
+  color: #888;
+  line-height: 1.6;
+}
+
+/* ── PROGRAM ── */
+.program {
+  padding: 90px 0;
+  border-top: 1px solid #1a1a1a;
+}
+
+.program h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  margin-bottom: 6px;
+}
+
+.program-list {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.program-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 0;
+  border-bottom: 1px solid #1a1a1a;
+  transition: background 0.2s;
+}
+
+.program-item:first-child { border-top: 1px solid #1a1a1a; }
+
+.program-item .step {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: rgba(201,168,76,0.3);
+  min-width: 40px;
+}
+
+.program-item span {
+  font-size: 0.97rem;
+  color: #ccc;
+}
+
+/* ── DETAILS ── */
+.details {
+  padding: 90px 0;
+  background: var(--dark-2);
+  border-top: 1px solid #1a1a1a;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.details-text h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  margin-bottom: 30px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.detail-icon {
+  font-size: 1.3rem;
+  margin-top: 2px;
+}
+
+.detail-item p {
+  color: #bbb;
+  line-height: 1.5;
+}
+
+.detail-item strong {
+  display: block;
+  color: #fff;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 3px;
+  color: var(--gold);
+}
+
+.details-img img {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #1e1e1e;
+  display: block;
+}
+
+/* ── CTA FINAL ── */
+.cta-final {
+  padding: 110px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-final::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.cta-final h2 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: #fff;
+  max-width: 640px;
+  margin: auto;
+  line-height: 1.2;
+}
+
+.cta-final h2 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 30px 0;
+  text-align: center;
+  border-top: 1px solid #1a1a1a;
+}
+
+footer p {
+  font-size: 0.8rem;
+  color: #444;
+}
+
+/* ── DESKTOP ── */
+@media (min-width: 768px) {
+  .hero-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .hero-text { flex: 1; }
+  .hero-img { flex: 0 0 auto; }
+
+  .audience-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<div class="hero-inner">
+
+  <div class="hero-text">
+    <div class="fade-up">
+      <span class="hero-label">Evento Presencial · 22.05.2026</span>
+      <h1>Assuma o <em>comando</em> do seu escritório jurídico</h1>
+    </div>
+    <div class="fade-up">
+      <span class="gold-line"></span>
+      <p>Um evento intenso e estratégico para advogados que decidiram sair da operação e liderar o crescimento com método, estrutura e previsibilidade.</p>
+    </div>
+    <div class="fade-up">
+      <a href="https://wa.me/5521969282880?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
+    </div>
+  </div>
+
+  <div class="hero-img fade-up">
+    <img src="https://i.imgur.com/pKB1VQi.png" alt="Especialista">
+  </div>
+
+</div>
+</div>
+</section>
+
+<!-- SOBRE -->
+<section class="about">
+<div class="container">
+  <h2>Mais do que conteúdo. Um ambiente de decisão.</h2>
+  <span class="gold-line"></span>
+  <p>Se o seu escritório depende exclusivamente de você, existe um problema estrutural. Ignorar isso custa caro: estagnação, sobrecarga e crescimento limitado.</p>
+  <p style="margin-top:12px">O Tração Jurídica nasce para mudar esse cenário. Aqui, você assume o papel de gestor com visão estratégica, estrutura e direção clara para crescer com consistência.</p>
+  <a href="https://wa.me/5521969282880?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
+</div>
+</section>
+
+<!-- PARA QUEM -->
+<section class="audience">
+<div class="container">
+  <div class="audience-grid">
+
+    <div class="card positive">
+      <h3>✔ Para quem é</h3>
+      <ul>
+        <li>Advogados que querem estruturar e escalar</li>
+        <li>Quem busca previsibilidade de crescimento</li>
+        <li>Profissionais que querem liderar com estratégia</li>
+        <li>Quem está cansado de depender só do próprio esforço</li>
+      </ul>
+    </div>
+
+    <div class="card negative">
+      <h3>✖ Não é para quem</h3>
+      <ul>
+        <li>Acredita que gestão é opcional</li>
+        <li>Espera crescimento automático</li>
+        <li>Não quer delegar ou estruturar</li>
+        <li>Prefere apagar incêndios</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- BENEFÍCIOS -->
+<section class="benefits">
+<div class="container">
+  <div class="section-header">
+    <h2>Neste evento, você vai aprender</h2>
+    <span class="gold-line center"></span>
+  </div>
+
+  <div class="benefits-grid">
+
+    <div class="benefit-card">
+      <div class="num">01</div>
+      <h3>Advogado-comandante</h3>
+      <p>Clareza de posicionamento e tomada de decisão estratégica</p>
+    </div>
+
+    <div class="benefit-card">
+      <div class="num">02</div>
+      <h3>Engenharia interna</h3>
+      <p>Fluxos, processos e estrutura que sustentam o crescimento</p>
+    </div>
+
+    <div class="benefit-card">
+      <div class="num">03</div>
+      <h3>Dados que decidem</h3>
+      <p>Transformar números em estratégia e previsibilidade</p>
+    </div>
+
+    <div class="benefit-card">
+      <div class="num">04</div>
+      <h3>Time de alta performance</h3>
+      <p>Cultura, liderança e desenvolvimento de equipe</p>
+    </div>
+
+    <div class="benefit-card">
+      <div class="num">05</div>
+      <h3>Escala com lucro</h3>
+      <p>Crescimento com controle, organização e leveza</p>
+    </div>
+
+  </div>
+
+  <div style="text-align:center">
+    <a href="https://wa.me/5521969282880?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
+  </div>
+</div>
+</section>
+
+<!-- PROGRAMAÇÃO -->
+<section class="program">
+<div class="container">
+  <h2>Programação do dia</h2>
+  <span class="gold-line"></span>
+
+  <div class="program-list">
+    <div class="program-item">
+      <span class="step">I</span>
+      <span>Posicionamento e visão estratégica</span>
+    </div>
+    <div class="program-item">
+      <span class="step">II</span>
+      <span>Estrutura interna e processos</span>
+    </div>
+    <div class="program-item">
+      <span class="step">III</span>
+      <span>Gestão orientada por dados</span>
+    </div>
+    <div class="program-item">
+      <span class="step">IV</span>
+      <span>Construção de time e liderança</span>
+    </div>
+    <div class="program-item">
+      <span class="step">V</span>
+      <span>Crescimento com previsibilidade</span>
+    </div>
+  </div>
+
+  <a href="https://wa.me/5521969282880?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
+</div>
+</section>
+
+<!-- DETALHES -->
+<section class="details">
+<div class="container">
+  <div class="details-grid">
+
+    <div class="details-text">
+      <h2>Detalhes do evento</h2>
+      <span class="gold-line"></span>
+
+      <div class="detail-item">
+        <span class="detail-icon">📅</span>
+        <p><strong>Data</strong>22 de maio de 2026</p>
+      </div>
+
+      <div class="detail-item">
+        <span class="detail-icon">⏰</span>
+        <p><strong>Horário</strong>9h às 17h</p>
+      </div>
+
+      <div class="detail-item">
+        <span class="detail-icon">📍</span>
+        <p><strong>Local</strong>Rossi Multi — Duque de Caxias / RJ</p>
+      </div>
+
+      <a href="https://wa.me/5521969282880?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
+    </div>
+
+    <div class="details-img">
+      <img src="https://i.imgur.com/sEtzkjk.jpeg" alt="Local do evento">
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+<div class="container">
+  <h2>Você vai continuar operando ou <em>assumir o comando?</em></h2>
+  <a href="https://wa.me/5521969282880?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
+</div>
+</section>
+
+<footer>
+<div class="container">
+  <p>© 2026 Tração Jurídica · Todos os direitos reservados</p>
+</div>
+</footer>
+
+<script>
+// scroll reveal
+const cards = document.querySelectorAll('.benefit-card');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('show'), i * 100);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+cards.forEach(c => observer.observe(c));
+</script>
+
+</body>
+</html>
