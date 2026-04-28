@@ -7,15 +7,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --silver: #c0c0c0;
-  --silver-light: #e8e8e8;
-  --silver-dim: #888;
+  --silver: #e8e8e8;
+  --silver-bright: #ffffff;
+  --silver-mid: #c8c8c8;
+  --silver-dim: #999;
   --dark: #080808;
   --dark-2: #0f0f0f;
   --dark-3: #151515;
   --red-dark: #1a0000;
   --text: #e8e8e8;
-  --muted: #888;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -46,23 +46,24 @@ body::before {
   margin: auto;
 }
 
+/* ── BUTTON ── */
 .btn {
   display: inline-block;
   padding: 15px 32px;
-  background: linear-gradient(135deg, #aaa, var(--silver-light), #aaa);
-  background-size: 200% 200%;
+  background: linear-gradient(135deg, #aaa 0%, #fff 40%, #ccc 60%, #aaa 100%);
+  background-size: 300% 300%;
   color: #000;
   font-family: 'DM Sans', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.95rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
   border-radius: 4px;
   margin-top: 24px;
   transition: transform 0.2s, box-shadow 0.3s;
-  box-shadow: 0 4px 20px rgba(192,192,192,0.2);
-  animation: btnShimmer 3s ease infinite;
+  box-shadow: 0 4px 24px rgba(255,255,255,0.18), 0 0 0 1px rgba(255,255,255,0.1);
+  animation: btnShimmer 2.5s ease infinite;
 }
 
 @keyframes btnShimmer {
@@ -73,19 +74,20 @@ body::before {
 
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(192,192,192,0.35);
+  box-shadow: 0 10px 40px rgba(255,255,255,0.3);
 }
 
+/* ── SILVER LINE ── */
 .silver-line {
   display: block;
   width: 60px;
   height: 2px;
-  background: var(--silver);
+  background: linear-gradient(90deg, transparent, #fff, transparent);
   margin: 18px 0 24px;
 }
 .silver-line.center { margin: 18px auto 24px; }
 
-/* HERO */
+/* ── HERO ── */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -103,7 +105,7 @@ body::before {
   transform: translateY(-50%);
   width: 55%;
   height: 110%;
-  background: radial-gradient(ellipse at center, rgba(192,192,192,0.05) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.04) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -114,53 +116,92 @@ body::before {
   align-items: center;
 }
 
-.hero-label {
+/* event name tag */
+.event-name {
+  display: inline-block;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 900;
+  font-style: italic;
+  background: linear-gradient(135deg, #aaa 0%, #fff 35%, #e0e0e0 55%, #bbb 80%, #fff 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: silverShine 3s ease infinite;
+  letter-spacing: -0.5px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+@keyframes silverShine {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero-text h1 {
+  font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+  line-height: 1.2;
+  color: #ccc;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.hero-text p {
+  margin-top: 18px;
+  color: #999;
+  font-size: 1rem;
+  max-width: 480px;
+  line-height: 1.75;
+}
+
+.hero-date-tag {
   display: inline-block;
   font-size: 0.72rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--silver);
-  border: 1px solid rgba(192,192,192,0.3);
+  color: var(--silver-mid);
+  border: 1px solid rgba(200,200,200,0.25);
   padding: 6px 14px;
   border-radius: 2px;
   margin-bottom: 18px;
 }
 
-.hero-text h1 {
-  font-size: clamp(2.2rem, 5vw, 3.6rem);
-  line-height: 1.15;
-  color: #fff;
+/* hero image with frame */
+.hero-img {
+  position: relative;
+  flex-shrink: 0;
 }
-
-.hero-text h1 em { font-style: italic; color: var(--silver); }
-
-.hero-text p {
-  margin-top: 18px;
-  color: #aaa;
-  font-size: 1.05rem;
-  max-width: 500px;
-  line-height: 1.75;
-}
-
-.hero-img { position: relative; flex-shrink: 0; }
 
 .hero-img::before {
   content: '';
   position: absolute;
-  inset: -12px;
-  border: 1px solid rgba(192,192,192,0.15);
-  border-radius: 12px;
+  inset: -14px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px;
+  pointer-events: none;
+  box-shadow: 0 0 40px rgba(255,255,255,0.03);
+}
+
+.hero-img::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
   pointer-events: none;
 }
 
 .hero-img img {
   width: 100%;
-  max-width: 420px;
+  max-width: 400px;
   border-radius: 8px;
   display: block;
-  filter: brightness(0.95) contrast(1.05);
+  object-fit: cover;
 }
 
+/* hero text right-aligned on desktop */
 .fade-up {
   opacity: 0;
   transform: translateY(30px);
@@ -172,7 +213,7 @@ body::before {
 
 @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
-/* ABOUT */
+/* ── ABOUT ── */
 .about {
   padding: 90px 0;
   background: var(--dark-2);
@@ -183,9 +224,8 @@ body::before {
 .about h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: #fff; max-width: 640px; }
 .about p { margin-top: 16px; color: #999; max-width: 620px; line-height: 1.8; }
 
-/* PARA QUEM */
+/* ── PARA QUEM ── */
 .audience { padding: 90px 0; }
-
 .audience-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
 
 .card { padding: 36px; border-radius: 8px; border: 1px solid #1e1e1e; }
@@ -204,7 +244,7 @@ body::before {
 .card.negative { background: var(--red-dark); border-color: #2e0000; }
 .card.negative h3 { color: #e06060; }
 
-.card ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.card ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
 
 .card li {
   font-size: 0.97rem;
@@ -217,34 +257,60 @@ body::before {
 
 .card li .icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
 
-/* PREÇO */
+/* ── PREÇO ── */
 .price-banner {
-  padding: 60px 0;
-  background: var(--dark-3);
-  border-top: 1px solid #1a1a1a;
-  border-bottom: 1px solid #1a1a1a;
+  padding: 70px 0;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   text-align: center;
 }
 
-.price-banner > .container > p {
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
+.price-banner .label {
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--silver-dim);
-  margin-bottom: 10px;
+  color: #888;
+  margin-bottom: 14px;
 }
 
 .price-value {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(3rem, 8vw, 5rem);
-  color: #fff;
+  font-size: clamp(4rem, 10vw, 7rem);
+  color: #000;
   line-height: 1;
+  letter-spacing: -2px;
 }
 
-.price-value span { font-size: 0.4em; vertical-align: super; color: var(--silver); }
-.price-note { margin-top: 10px; font-size: 0.85rem; color: #666; }
+.price-currency {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.32em;
+  font-weight: 600;
+  vertical-align: super;
+  color: #444;
+  letter-spacing: 0;
+  margin-right: 4px;
+}
 
-/* BENEFITS */
+.price-note {
+  margin-top: 12px;
+  font-size: 0.82rem;
+  color: #888;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.price-banner .btn {
+  background: linear-gradient(135deg, #222 0%, #555 40%, #333 100%);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.price-banner .btn:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+}
+
+/* ── BENEFITS ── */
 .benefits {
   padding: 90px 0;
   background: var(--dark-2);
@@ -259,36 +325,41 @@ body::before {
 .benefit-card {
   background: var(--dark-3);
   border: 1px solid #1e1e1e;
-  border-left: 3px solid var(--silver);
+  border-left: 3px solid rgba(255,255,255,0.4);
   padding: 28px;
   border-radius: 6px;
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.3s, background 0.3s;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
 }
 
 .benefit-card.show { opacity: 1; transform: translateY(0); }
-.benefit-card:hover { border-left-color: var(--silver-light); background: #181818; }
 
-.benefit-card .num {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  color: rgba(192,192,192,0.15);
-  line-height: 1;
-  margin-bottom: 10px;
+.benefit-card:hover {
+  border-left-color: #fff;
+  background: #181818;
 }
 
-.benefit-card h3 {
+.benefit-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.benefit-body h3 {
   font-family: 'DM Sans', sans-serif;
   font-weight: 600;
   font-size: 1rem;
   color: #fff;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
-.benefit-card p { font-size: 0.92rem; color: #888; line-height: 1.6; }
+.benefit-body p { font-size: 0.92rem; color: #888; line-height: 1.6; }
 
-/* PROGRAM */
+/* ── PROGRAM ── */
 .program { padding: 90px 0; border-top: 1px solid #1a1a1a; }
 .program h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); }
 
@@ -307,14 +378,13 @@ body::before {
 .program-item .dot {
   width: 8px; height: 8px;
   border-radius: 50%;
-  background: var(--silver);
+  background: linear-gradient(135deg, #aaa, #fff);
   flex-shrink: 0;
-  opacity: 0.5;
 }
 
 .program-item span { font-size: 0.97rem; color: #ccc; }
 
-/* SOBRE ELA */
+/* ── SOBRE ELA ── */
 .sobre-ela {
   padding: 90px 0;
   background: var(--dark-2);
@@ -330,22 +400,21 @@ body::before {
   border-radius: 8px;
   border: 1px solid #1e1e1e;
   display: block;
-  filter: grayscale(15%);
 }
 
-.sobre-text h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: #fff; }
+.sobre-text h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); color: #fff; }
 
 .sobre-text .subtitle {
   margin-top: 6px;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--silver);
+  color: var(--silver-mid);
 }
 
-.sobre-text p { margin-top: 14px; color: #999; line-height: 1.8; font-size: 0.97rem; }
+.sobre-text p { margin-top: 14px; color: #999; line-height: 1.85; font-size: 0.97rem; }
 
-/* DEPOIMENTOS */
+/* ── DEPOIMENTOS ── */
 .depoimentos { padding: 90px 0; border-top: 1px solid #1a1a1a; }
 
 .depo-inner {
@@ -357,13 +426,13 @@ body::before {
 
 .depo-text { text-align: center; }
 .depo-text h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: #fff; }
-.depo-text p { margin-top: 12px; color: #888; font-size: 0.95rem; }
+.depo-text p { margin-top: 12px; color: #888; font-size: 0.95rem; max-width: 400px; }
 
 .video-wrapper {
   position: relative;
   width: 100%;
-  max-width: 320px;
-  border-radius: 12px;
+  max-width: 300px;
+  border-radius: 16px;
   overflow: hidden;
   border: 1px solid #222;
   box-shadow: 0 20px 60px rgba(0,0,0,0.6);
@@ -377,7 +446,7 @@ body::before {
   border: none;
 }
 
-/* DETAILS */
+/* ── DETAILS ── */
 .details {
   padding: 90px 0;
   background: var(--dark-2);
@@ -394,8 +463,8 @@ body::before {
 
 .detail-item strong {
   display: block;
-  color: var(--silver);
-  font-size: 0.8rem;
+  color: #ddd;
+  font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 3px;
@@ -408,7 +477,7 @@ body::before {
   display: block;
 }
 
-/* CTA FINAL */
+/* ── CTA FINAL ── */
 .cta-final {
   padding: 110px 0;
   text-align: center;
@@ -421,35 +490,64 @@ body::before {
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(192,192,192,0.05) 0%, transparent 65%);
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 65%);
   pointer-events: none;
 }
 
 .cta-final h2 {
-  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-size: clamp(1.6rem, 3.8vw, 2.8rem);
   color: #fff;
-  max-width: 640px;
+  max-width: 700px;
   margin: auto;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
-.cta-final h2 em { font-style: italic; color: var(--silver); }
+.cta-final h2 em {
+  font-style: italic;
+  background: linear-gradient(135deg, #aaa 0%, #fff 40%, #ccc 70%, #aaa 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: silverShine 3s ease infinite;
+}
 
 footer { padding: 30px 0; text-align: center; border-top: 1px solid #1a1a1a; }
 footer p { font-size: 0.8rem; color: #444; }
 
-/* DESKTOP */
+/* ── DESKTOP ── */
 @media (min-width: 768px) {
-  .hero-inner { flex-direction: row; justify-content: space-between; align-items: center; gap: 60px; }
-  .hero-text { flex: 1; }
-  .hero-img { flex: 0 0 auto; }
+  .hero-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .hero-text {
+    flex: 1;
+    text-align: right;
+  }
+
+  .hero-text p { margin-left: auto; }
+  .silver-line.hero-line { margin-left: auto; margin-right: 0; }
+
+  .hero-img { flex: 0 0 auto; order: -1; }
+
   .audience-grid { grid-template-columns: 1fr 1fr; }
   .benefits-grid { grid-template-columns: 1fr 1fr; }
   .details-grid { grid-template-columns: 1fr 1fr; }
   .sobre-grid { grid-template-columns: 1fr 1fr; }
-  .depo-inner { flex-direction: row; align-items: center; justify-content: center; gap: 60px; }
-  .depo-text { text-align: left; max-width: 400px; }
+
+  .depo-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 70px;
+  }
+
+  .depo-text { text-align: left; }
 }
 </style>
 </head>
@@ -459,22 +557,26 @@ footer p { font-size: 0.8rem; color: #444; }
 <section class="hero">
 <div class="container">
 <div class="hero-inner">
+
+  <div class="hero-img fade-up">
+    <img src="https://i.imgur.com/WM0icb7.jpeg" alt="Débora Knust">
+  </div>
+
   <div class="hero-text">
     <div class="fade-up">
-      <span class="hero-label">Evento Presencial · 22.05.2026</span>
-      <h1>Assuma o <em>comando</em> do seu escritório jurídico</h1>
+      <span class="hero-date-tag">Evento Presencial · 22.05.2026</span>
+      <span class="event-name">Tração Jurídica</span>
+      <h1>Assuma o comando do seu escritório de advocacia</h1>
     </div>
     <div class="fade-up">
-      <span class="silver-line"></span>
+      <span class="silver-line hero-line"></span>
       <p>Um evento intenso e estratégico para advogados que decidiram sair da operação e liderar o crescimento com método, estrutura e previsibilidade.</p>
     </div>
     <div class="fade-up">
       <a href="https://wa.me/5521975076447?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
     </div>
   </div>
-  <div class="hero-img fade-up">
-    <img src="https://i.imgur.com/pKB1VQi.png" alt="Débora Knust">
-  </div>
+
 </div>
 </div>
 </section>
@@ -519,9 +621,11 @@ footer p { font-size: 0.8rem; color: #444; }
 <!-- PREÇO -->
 <section class="price-banner">
 <div class="container">
-  <p>Investimento</p>
-  <div class="price-value"><span>R$</span> 997</div>
-  <p class="price-note">Pagamento único · Vagas limitadas</p>
+  <p class="label">Investimento</p>
+  <div class="price-value">
+    <span class="price-currency">R$</span>997
+  </div>
+  <p class="price-note">Vagas limitadas</p>
   <a href="https://wa.me/5521975076447?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
 </div>
 </section>
@@ -535,32 +639,42 @@ footer p { font-size: 0.8rem; color: #444; }
   </div>
   <div class="benefits-grid">
     <div class="benefit-card">
-      <div class="num">01</div>
-      <h3>Advogado-comandante</h3>
-      <p>Clareza de posicionamento e tomada de decisão estratégica</p>
+      <div class="benefit-icon">🎯</div>
+      <div class="benefit-body">
+        <h3>Advogado-comandante</h3>
+        <p>Clareza de posicionamento e tomada de decisão estratégica</p>
+      </div>
     </div>
     <div class="benefit-card">
-      <div class="num">02</div>
-      <h3>Engenharia interna</h3>
-      <p>Fluxos, processos e estrutura que sustentam o crescimento</p>
+      <div class="benefit-icon">⚙️</div>
+      <div class="benefit-body">
+        <h3>Engenharia interna</h3>
+        <p>Fluxos, processos e estrutura que sustentam o crescimento</p>
+      </div>
     </div>
     <div class="benefit-card">
-      <div class="num">03</div>
-      <h3>Dados que decidem</h3>
-      <p>Transformar números em estratégia e previsibilidade</p>
+      <div class="benefit-icon">📊</div>
+      <div class="benefit-body">
+        <h3>Dados que decidem</h3>
+        <p>Transformar números em estratégia e previsibilidade</p>
+      </div>
     </div>
     <div class="benefit-card">
-      <div class="num">04</div>
-      <h3>Time de alta performance</h3>
-      <p>Cultura, liderança e desenvolvimento de equipe</p>
+      <div class="benefit-icon">🏆</div>
+      <div class="benefit-body">
+        <h3>Time de alta performance</h3>
+        <p>Cultura, liderança e desenvolvimento de equipe</p>
+      </div>
     </div>
     <div class="benefit-card">
-      <div class="num">05</div>
-      <h3>Escala com lucro</h3>
-      <p>Crescimento com controle, organização e leveza</p>
+      <div class="benefit-icon">📈</div>
+      <div class="benefit-body">
+        <h3>Escala com lucro</h3>
+        <p>Crescimento com controle, organização e leveza</p>
+      </div>
     </div>
   </div>
-  <div style="text-align:center">
+  <div style="text-align:center; margin-top:40px">
     <a href="https://wa.me/5521975076447?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
   </div>
 </div>
@@ -587,7 +701,7 @@ footer p { font-size: 0.8rem; color: #444; }
 <div class="container">
   <div class="sobre-grid">
     <div class="sobre-img">
-      <img src="https://i.imgur.com/pKB1VQi.png" alt="Débora Knust">
+      <img src="https://i.imgur.com/sEtzkjk.jpeg" alt="Débora Knust">
     </div>
     <div class="sobre-text">
       <h2>Débora Knust</h2>
@@ -614,9 +728,9 @@ footer p { font-size: 0.8rem; color: #444; }
     </div>
     <div class="video-wrapper">
       <iframe
-        src="https://www.youtube.com/embed/WqdmLAwS8Zc"
+        src="https://drive.google.com/file/d/1G0asuON451Jg8Q15IxcEZaOb_inSzl2m/preview"
         title="Depoimento"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allow="autoplay"
         allowfullscreen>
       </iframe>
     </div>
@@ -650,7 +764,7 @@ footer p { font-size: 0.8rem; color: #444; }
       <a href="https://wa.me/5521975076447?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
     </div>
     <div class="details-img">
-      <img src="https://static.wixstatic.com/media/6522c5_5af5c75e3ff843bea33f69e907bc5ea1~mv2.jpg/v1/fit/w_930,h_562,q_90,enc_avif,quality_auto/6522c5_5af5c75e3ff843bea33f69e907bc5ea1~mv2.jpg" alt="Local do evento">
+      <img src="https://i.imgur.com/cHdD3TW.jpeg" alt="Local do evento">
     </div>
   </div>
 </div>
@@ -659,7 +773,7 @@ footer p { font-size: 0.8rem; color: #444; }
 <!-- CTA FINAL -->
 <section class="cta-final">
 <div class="container">
-  <h2>Você vai continuar operando ou <em>assumir o comando?</em></h2>
+  <h2>Você vai continuar preso ao operacional do seu escritório ou vai finalmente <em>assumir o comando?</em></h2>
   <a href="https://wa.me/5521975076447?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
 </div>
 </section>
