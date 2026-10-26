@@ -1,826 +1,1323 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tração Jurídica</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tração Jurídica — Presencial · 4 de novembro de 2026</title>
+<meta name="description" content="Um evento presencial, intenso e estratégico para advogados que decidiram assumir o comando do seu escritório. Com Débora Knust.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=DM+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
+/* ═══════════════════════════════════════════
+   TRAÇÃO JURÍDICA — v3
+   Base: HTML Claude · Paleta: preto + amarelo
+   Foto hero + foto currículo mantidas
+═══════════════════════════════════════════ */
 :root {
-  --silver: #e8e8e8;
-  --silver-bright: #ffffff;
-  --silver-mid: #c8c8c8;
-  --silver-dim: #999;
-  --dark: #080808;
-  --dark-2: #0f0f0f;
-  --dark-3: #151515;
-  --red-dark: #1a0000;
-  --text: #e8e8e8;
+  --bg:       #0A0A0A;
+  --surface:  #141414;
+  --surface-2:#262626;
+  --ink:      #F5F4EE;
+  --muted:    #A5A59B;
+  --line:     #2F2F2D;
+  --accent:   #FFD60A;
+  --accent-ink:#0A0A0A;
+  --amber:    #FF7A45;
+  --font-display:"Newsreader",Georgia,serif;
+  --font-body:"DM Sans",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,monospace;
+  color-scheme:dark;
 }
 
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--dark);
-  color: var(--text);
-  overflow-x: hidden;
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.65;
+  overflow-x:hidden;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
 }
 
-h1, h2, h3 { font-family: 'Playfair Display', serif; }
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 999;
-  opacity: 0.4;
+/* noise overlay */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:999;opacity:.35;
 }
 
-.container {
-  width: 90%;
-  max-width: 1080px;
-  margin: auto;
+.wrap{max-width:1080px;margin:0 auto}
+
+section{
+  padding-block:64px;
+  border-top:1px solid var(--line);
+}
+section.hero{border-top:0;padding-block:0}
+
+h1,h2,h3{
+  font-family:var(--font-display);
+  font-weight:600;
+  line-height:1.12;
+  letter-spacing:-.01em;
+  text-wrap:balance;
+}
+h1{font-size:clamp(2.2rem,5.6vw,3.8rem)}
+h2{font-size:clamp(1.6rem,3.4vw,2.3rem)}
+h3{font-size:1.15rem}
+
+p{margin:0}
+
+.mono{
+  font-family:var(--font-mono);
+  font-size:.72rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--muted);
 }
 
-/* ── BUTTON ── */
-.btn {
-  display: inline-block;
-  padding: 15px 32px;
-  background: linear-gradient(135deg, #aaa 0%, #fff 40%, #ccc 60%, #aaa 100%);
-  background-size: 300% 300%;
-  color: #000;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 700;
-  font-size: 0.95rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border-radius: 4px;
-  margin-top: 24px;
-  transition: transform 0.2s, box-shadow 0.3s;
-  box-shadow: 0 4px 24px rgba(255,255,255,0.18), 0 0 0 1px rgba(255,255,255,0.1);
-  animation: btnShimmer 2.5s ease infinite;
+.lead{max-width:62ch;font-size:1.05rem;margin-top:18px;line-height:1.75}
+.lead+.lead{margin-top:10px}
+.intro{max-width:62ch;color:var(--muted);margin-top:10px;font-size:.95rem}
+
+.hl{color:var(--accent)}
+
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ── BOTÃO ─────────────────────────── */
+.btn{
+  display:inline-block;
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:.88rem;
+  letter-spacing:.05em;
+  cursor:pointer;
+  background:var(--accent);
+  color:var(--accent-ink);
+  border:1px solid var(--accent);
+  border-radius:6px;
+  padding:13px 28px;
+  text-decoration:none;
+  transition:filter .2s,transform .15s;
+}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--muted)}
+a.btn{display:inline-block}
+
+/* ── CHIPS ──────────────────────────── */
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.chip{
+  font-family:var(--font-mono);
+  font-size:.74rem;
+  border:1px solid var(--line);
+  background:var(--surface);
+  padding:6px 12px;
+  border-radius:6px;
+  color:var(--muted);
 }
 
-@keyframes btnShimmer {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* ══════════════════════════════════════
+   HERO — foto grande + texto
+══════════════════════════════════════ */
+.hero{
+  min-height:100svh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  align-items:stretch;
+  position:relative;
+  overflow:hidden;
 }
 
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 40px rgba(255,255,255,0.3);
+.hero__photo-col{
+  position:relative;
+  overflow:hidden;
 }
 
-.silver-line {
-  display: block;
-  width: 60px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #fff, transparent);
-  margin: 18px 0 24px;
-}
-.silver-line.center { margin: 18px auto 24px; }
-
-/* ── SILVER TEXT ── */
-@keyframes silverShine {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.hero__photo-col img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:top center;
+  display:block;
+  filter:brightness(.92) contrast(1.04);
 }
 
-/* ── HERO ── */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 80px 0;
-  position: relative;
-  overflow: hidden;
+/* gradiente lateral para a foto não cortar bruscamente */
+.hero__photo-col::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to right,transparent 60%,var(--bg) 100%);
+  pointer-events:none;
 }
 
-.hero::after {
-  content: '';
-  position: absolute;
-  left: -10%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 55%;
-  height: 110%;
-  background: radial-gradient(ellipse at center, rgba(255,255,255,0.04) 0%, transparent 70%);
-  pointer-events: none;
+.hero__text-col{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:80px 48px 80px 40px;
+  position:relative;
+  z-index:1;
 }
 
-.hero-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  align-items: center;
+.hero-date-tag{
+  display:inline-block;
+  font-family:var(--font-mono);
+  font-size:.68rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--muted);
+  border:1px solid rgba(200,200,200,.2);
+  padding:5px 12px;
+  border-radius:3px;
+  margin-bottom:22px;
 }
 
-.hero-date-tag {
-  display: inline-block;
-  font-size: 0.72rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--silver-mid);
-  border: 1px solid rgba(200,200,200,0.25);
-  padding: 6px 14px;
-  border-radius: 2px;
-  margin-bottom: 20px;
+.event-name{
+  font-family:var(--font-display);
+  font-size:clamp(2.6rem,6vw,4.8rem);
+  font-weight:600;
+  font-style:italic;
+  background:linear-gradient(135deg,#888 0%,#fff 30%,#e0e0e0 50%,#bbb 70%,#fff 100%);
+  background-size:300% 300%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:shine 3s ease infinite;
+  line-height:1.08;
+  display:block;
+  margin-bottom:22px;
 }
 
-.event-name {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.8rem, 7vw, 5rem);
-  font-weight: 900;
-  font-style: italic;
-  background: linear-gradient(135deg, #888 0%, #fff 30%, #e0e0e0 50%, #bbb 70%, #fff 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: silverShine 3s ease infinite;
-  letter-spacing: -1px;
-  line-height: 1.1;
-  display: block;
-  margin-bottom: 20px;
+@keyframes shine{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }
 
-.hero-text p {
-  margin-top: 4px;
-  color: #999;
-  font-size: 1rem;
-  max-width: 460px;
-  line-height: 1.75;
+.hero__sub{
+  color:var(--muted);
+  font-size:1rem;
+  line-height:1.8;
+  max-width:42ch;
+  margin-bottom:32px;
 }
 
-.hero-img {
-  position: relative;
-  flex-shrink: 0;
+.hero__cta-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:center;
 }
 
-.hero-img::before {
-  content: '';
-  position: absolute;
-  inset: -14px;
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 14px;
-  pointer-events: none;
-  box-shadow: 0 0 40px rgba(255,255,255,0.03);
+.hero__meta-row{
+  margin-top:24px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
 }
 
-.hero-img::after {
-  content: '';
-  position: absolute;
-  inset: -6px;
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 10px;
-  pointer-events: none;
+/* fade-up hero */
+.fade-up{
+  opacity:0;
+  transform:translateY(24px);
+  animation:fadeUp .75s ease forwards;
+}
+.fade-up:nth-child(1){animation-delay:.1s}
+.fade-up:nth-child(2){animation-delay:.28s}
+.fade-up:nth-child(3){animation-delay:.46s}
+.fade-up:nth-child(4){animation-delay:.62s}
+
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ══════════════════════════════════════
+   SOBRE O EVENTO (corte branco)
+══════════════════════════════════════ */
+.sobre-evento{
+  background:#fff;
+  color:#000;
+  padding-block:72px;
+  border-top:0;
+  text-align:center;
+}
+.sobre-evento h2{color:#000}
+.sobre-evento p{
+  max-width:680px;
+  margin:18px auto 0;
+  color:#444;
+  font-size:1.05rem;
+  line-height:1.85;
+}
+.sobre-evento strong{color:#000}
+
+/* ══════════════════════════════════════
+   PILARES (explorador interativo)
+══════════════════════════════════════ */
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:20px}
+.chain .step{
+  border:1px solid var(--line);
+  background:var(--surface);
+  border-radius:6px;
+  padding:6px 12px;
+  font-size:.9rem;
+}
+.chain .step b{font-weight:600}
+.chain .arrow{color:var(--muted)}
+.chain-note{margin-top:8px;color:var(--muted);font-size:.88rem}
+
+.explorer{
+  display:grid;
+  grid-template-columns:minmax(0,300px) minmax(0,1fr);
+  gap:20px;
+  margin-top:28px;
+  align-items:start;
 }
 
-.hero-img img {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 8px;
-  display: block;
-  object-fit: cover;
+.tabs{display:flex;flex-direction:column;gap:8px;min-width:0}
+
+.tab{
+  text-align:left;
+  font:inherit;
+  color:var(--ink);
+  cursor:pointer;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:14px 16px;
+  transition:border-color .2s;
+}
+.tab:hover{border-color:var(--accent)}
+.tab .nm{display:block;font-weight:600;line-height:1.3}
+.tab .nm-short{display:none}
+.tab .ts{display:block;color:var(--muted);font-size:.83rem;margin-top:3px;line-height:1.4}
+.tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.tab[aria-selected="true"] .ts{color:var(--accent-ink);opacity:.85}
+
+.panel{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:clamp(20px,4vw,32px);
+  min-width:0;
+}
+.panel .thesis{
+  font-family:var(--font-display);
+  font-size:clamp(1.35rem,2.8vw,1.85rem);
+  font-weight:500;
+  line-height:1.2;
+  margin-top:10px;
+  text-wrap:balance;
+}
+.panel .block{margin-top:24px}
+.panel .block p.txt{margin-top:6px;max-width:60ch;color:var(--muted);font-size:.95rem}
+.panel ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+.panel li{position:relative;padding-left:20px;max-width:60ch;font-size:.95rem}
+.panel li::before{content:"–";position:absolute;left:3px;color:var(--accent);font-weight:600}
+.ask{
+  margin-top:26px;
+  background:var(--accent);
+  color:var(--accent-ink);
+  border-radius:8px;
+  padding:16px 18px;
+}
+.ask .mono{color:var(--accent-ink);opacity:.72}
+.ask p.q{
+  font-family:var(--font-display);
+  font-size:1.25rem;
+  line-height:1.3;
+  margin-top:6px;
+  font-weight:500;
 }
 
-.fade-up {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUp 0.8s ease forwards;
+/* ══════════════════════════════════════
+   PARA QUEM
+══════════════════════════════════════ */
+.two{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+  margin-top:26px;
 }
-.fade-up:nth-child(1) { animation-delay: 0.1s; }
-.fade-up:nth-child(2) { animation-delay: 0.3s; }
-.fade-up:nth-child(3) { animation-delay: 0.5s; }
-
-@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-
-/* ── ABOUT (novo: assuma o comando) ── */
-.about {
-  padding: 90px 0;
-  background: var(--dark-2);
-  border-top: 1px solid #1a1a1a;
-  border-bottom: 1px solid #1a1a1a;
+.two > div{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:24px 28px;
 }
+.two h3{font-size:1rem;margin-bottom:14px}
+.two ul{list-style:none;display:grid;gap:12px}
+.two li{position:relative;padding-left:22px;font-size:.95rem;color:var(--muted)}
+.two .yes{border-color:#1a3a1a;background:#0a150a}
+.two .yes h3{color:#6abf6a}
+.two .yes li::before{content:"✓";position:absolute;left:2px;color:#6abf6a;font-weight:700}
+.two .no{border-color:#3a0a0a;background:#1a0000}
+.two .no h3{color:#e06060}
+.two .no li::before{content:"✕";position:absolute;left:2px;color:#e06060;font-weight:700}
 
-.about-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  align-items: center;
+/* ══════════════════════════════════════
+   PREÇO (corte branco)
+══════════════════════════════════════ */
+.price-banner{
+  background:#fff;
+  color:#000;
+  text-align:center;
+  padding-block:72px;
+  border-top:0;
 }
-
-.about-text { flex: 1; }
-
-.about-text h2 {
-  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-  color: #fff;
-  max-width: 520px;
-  line-height: 1.2;
+.price-banner .mono{color:#888}
+.price-value{
+  font-family:var(--font-display);
+  font-size:clamp(4rem,10vw,7rem);
+  color:#000;
+  line-height:1;
+  letter-spacing:-2px;
+  margin:14px 0 8px;
 }
-
-.about-text p {
-  margin-top: 16px;
-  color: #999;
-  max-width: 520px;
-  line-height: 1.85;
+.price-currency{
+  font-family:var(--font-body);
+  font-size:.26em;
+  font-weight:600;
+  vertical-align:super;
+  color:#555;
+  margin-right:4px;
+  letter-spacing:0;
 }
-
-.about-img {
-  flex-shrink: 0;
-  width: 100%;
+.price-note{
+  font-size:.8rem;
+  color:#888;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:28px;
 }
-
-.about-img img {
-  width: 100%;
-  max-width: 480px;
-  border-radius: 8px;
-  display: block;
-  border: 1px solid #1e1e1e;
+.price-banner .btn{
+  background:#000;
+  color:#fff;
+  border-color:#000;
 }
+.price-banner .btn:hover{background:#222;border-color:#222}
 
-/* ── PARA QUEM ── */
-.audience { padding: 90px 0; }
-.audience-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
-
-.card { padding: 36px; border-radius: 8px; border: 1px solid #1e1e1e; }
-
-.card h3 {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 600;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 20px;
+/* ══════════════════════════════════════
+   DIAGNÓSTICO RÁPIDO
+══════════════════════════════════════ */
+.diag{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+  gap:28px;
+  margin-top:28px;
+  align-items:start;
 }
-
-.card.positive { background: #0a150a; border-color: #0d2e0d; }
-.card.positive h3 { color: #6abf6a; }
-.card.negative { background: var(--red-dark); border-color: #2e0000; }
-.card.negative h3 { color: #e06060; }
-
-.card ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
-
-.card li {
-  font-size: 0.97rem;
-  color: #ccc;
-  line-height: 1.5;
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
+fieldset{border:0;margin:0 0 24px;padding:0;min-width:0}
+legend{padding:0;margin-bottom:10px;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.q-item{margin-bottom:18px}
+.q-item p{margin-bottom:10px;max-width:58ch;font-size:.96rem}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.pill{position:relative;cursor:pointer}
+.pill input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
+.pill span{
+  display:inline-block;
+  border:1px solid var(--line);
+  background:var(--surface);
+  border-radius:999px;
+  padding:6px 18px;
+  font-size:.9rem;
+  transition:border-color .15s,background .15s;
 }
-
-.card li .icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
-
-/* ── PREÇO ── */
-.price-banner {
-  padding: 70px 0;
-  background: #fff;
-  text-align: center;
-}
-
-.price-banner .label {
-  font-size: 0.78rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #888;
-  margin-bottom: 14px;
+.pill:hover span{border-color:var(--accent)}
+.pill input:checked+span{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:var(--accent-ink);
+  font-weight:600;
 }
 
-.price-value {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(4rem, 10vw, 7rem);
-  color: #000;
-  line-height: 1;
-  letter-spacing: -2px;
+.score{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:clamp(16px,3vw,24px);
+  position:sticky;
+  top:16px;
+  min-width:0;
+}
+.rows{display:grid;gap:14px;margin-top:14px}
+.row .top{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+.row .nm{font-weight:600;font-size:.95rem}
+.row .val{font-family:var(--font-mono);font-size:.76rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.track{height:8px;background:var(--surface-2);border-radius:4px;margin-top:6px;overflow:hidden}
+.fill{height:100%;width:0;background:var(--accent);border-radius:4px;transition:width .35s ease}
+.fill.low{background:var(--amber)}
+.row-status{font-size:.8rem;color:var(--muted);margin-top:4px}
+.summary-block{margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
+.summary-block p+p{margin-top:8px}
+.summary-block .small{font-size:.84rem;color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+
+/* ══════════════════════════════════════
+   TURMA / PAGAMENTO
+══════════════════════════════════════ */
+dl.turma{
+  display:grid;
+  grid-template-columns:minmax(0,160px) minmax(0,1fr);
+  gap:0;
+  margin:24px 0 0;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:10px;
+  overflow:hidden;
+}
+dl.turma dt,dl.turma dd{
+  margin:0;padding:14px 18px;
+  border-top:1px solid var(--line);
+}
+dl.turma dt:first-of-type,
+dl.turma dt:first-of-type+dd{border-top:0}
+.tbd{color:var(--muted);font-style:italic}
+.maplink{color:var(--accent);font-weight:600}
+
+.pay{
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr);
+  gap:24px;
+  margin-top:24px;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:clamp(18px,3vw,26px);
+  align-items:start;
+}
+.qrbox{
+  background:#fff;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid var(--line);
+  line-height:0;
+  flex-shrink:0;
+}
+.qrbox img{width:168px;height:168px;max-width:100%;image-rendering:pixelated}
+.pay h3{margin-bottom:6px;font-size:1.1rem}
+.pay .field{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.pay input[type="text"]{
+  flex:1 1 220px;min-width:0;
+  font-family:var(--font-mono);font-size:.76rem;
+  padding:10px 12px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:var(--bg);
+  color:var(--ink);
+}
+.pay .note{margin-top:12px;color:var(--muted);font-size:.88rem}
+#copymsg{font-size:.84rem;color:var(--accent);margin-top:6px;min-height:1.2em;display:block}
+
+/* ══════════════════════════════════════
+   SOBRE ELA (foto + texto)
+══════════════════════════════════════ */
+.sobre-grid{
+  display:grid;
+  grid-template-columns:280px 1fr;
+  gap:52px;
+  align-items:start;
+  margin-top:32px;
+}
+.sobre-img img{
+  width:100%;
+  border-radius:8px;
+  border:1px solid var(--line);
+  display:block;
+}
+.sobre-text h2{font-size:clamp(1.8rem,3.5vw,2.6rem);color:#fff}
+.sobre-text .subtitle{
+  margin-top:6px;
+  font-size:.74rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.sobre-text p{margin-top:12px;color:var(--muted);line-height:1.85;font-size:.95rem;max-width:58ch}
+.cargos{
+  list-style:none;
+  margin:14px 0 0;
+  padding:0;
+  display:grid;gap:8px;
+}
+.cargos li{
+  position:relative;
+  padding-left:22px;
+  font-size:.9rem;
+  color:var(--muted);
+}
+.cargos li::before{content:"–";position:absolute;left:4px;color:var(--accent);font-weight:600}
+
+/* ══════════════════════════════════════
+   DEPOIMENTOS
+══════════════════════════════════════ */
+.depo-inner{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:40px;
+  margin-top:8px;
+}
+.depo-text{text-align:center}
+.depo-text h2{color:#fff}
+.depo-text p{margin-top:12px;color:var(--muted);font-size:.95rem;max-width:42ch}
+.video-wrapper{
+  position:relative;
+  width:100%;max-width:300px;
+  border-radius:14px;
+  overflow:hidden;
+  border:1px solid #222;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+  flex-shrink:0;
+}
+.video-wrapper iframe{
+  display:block;width:100%;
+  aspect-ratio:9/16;border:none;
 }
 
-.price-currency {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.28em;
-  font-weight: 600;
-  vertical-align: super;
-  color: #444;
-  letter-spacing: 0;
-  margin-right: 6px;
+/* ══════════════════════════════════════
+   DETALHES
+══════════════════════════════════════ */
+.details-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
+  align-items:center;
+  margin-top:8px;
+}
+.detail-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px}
+.detail-icon{font-size:1.2rem;margin-top:2px;flex-shrink:0}
+.detail-item p{color:var(--muted);line-height:1.5;font-size:.95rem}
+.detail-item strong{
+  display:block;
+  color:var(--ink);
+  font-size:.72rem;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  margin-bottom:3px;
+}
+.details-img img{
+  width:100%;
+  border-radius:10px;
+  border:1px solid var(--line);
+  display:block;
 }
 
-.price-note {
-  margin-top: 12px;
-  font-size: 0.82rem;
-  color: #888;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+/* ══════════════════════════════════════
+   CTA FINAL
+══════════════════════════════════════ */
+.cta-final{
+  padding-block:110px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.cta-final::before{
+  content:'';
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:700px;height:700px;
+  background:radial-gradient(circle,rgba(255,214,10,.06) 0%,transparent 65%);
+  pointer-events:none;
+}
+.cta-final h2{
+  font-size:clamp(1.6rem,3.8vw,2.8rem);
+  color:#fff;
+  max-width:700px;
+  margin:auto;
+  line-height:1.25;
+}
+.cta-final h2 em{
+  font-style:italic;
+  background:linear-gradient(135deg,#aaa 0%,#fff 40%,#ccc 70%,#aaa 100%);
+  background-size:300% 300%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:shine 3s ease infinite;
+}
+.cta-final .btn{margin-top:32px}
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer{
+  border-top:1px solid var(--line);
+  padding-block:28px 44px;
+  color:var(--muted);
+  font-size:.82rem;
+}
+footer p{max-width:72ch;line-height:1.7}
+
+/* ══════════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════════ */
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity .65s ease,transform .65s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media(max-width:860px){
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero__photo-col{height:55vw;max-height:420px}
+  .hero__photo-col::after{background:linear-gradient(to bottom,transparent 60%,var(--bg) 100%)}
+  .hero__text-col{padding:36px 0 60px}
+  .explorer{grid-template-columns:minmax(0,1fr)}
+  .tabs{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  .tab{flex:0 0 auto;padding:10px 14px}
+  .tab .ts,.tab .nm-full{display:none}
+  .tab .nm-short{display:inline}
+  .two{grid-template-columns:minmax(0,1fr)}
+  .sobre-grid{grid-template-columns:1fr}
+  .sobre-img img{max-width:320px}
+  .details-grid{grid-template-columns:1fr}
+  .diag{grid-template-columns:minmax(0,1fr)}
+  .score{position:static}
+  dl.turma{grid-template-columns:minmax(0,1fr)}
+  dl.turma dt{padding-bottom:0;border-top:1px solid var(--line)}
+  dl.turma dd{border-top:0;padding-top:4px}
+  dl.turma dt:first-of-type{border-top:0}
+  .pay{grid-template-columns:minmax(0,1fr)}
+  .depo-inner{flex-direction:column;align-items:center}
+  .depo-text{text-align:center}
 }
 
-.price-banner .btn {
-  background: linear-gradient(135deg, #222 0%, #555 40%, #333 100%);
-  background-size: 300% 300%;
-  color: #fff;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+@media(min-width:861px){
+  .depo-inner{flex-direction:row;align-items:center;justify-content:center;gap:70px}
+  .depo-text{text-align:left;max-width:380px}
 }
 
-.price-banner .btn:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.35); }
-
-/* ── BENEFITS ── */
-.benefits {
-  padding: 90px 0;
-  background: var(--dark-2);
-  border-top: 1px solid #1a1a1a;
-}
-
-.section-header { text-align: center; margin-bottom: 56px; }
-.section-header h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: #fff; }
-
-.benefits-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-
-.benefit-card {
-  background: var(--dark-3);
-  border: 1px solid #1e1e1e;
-  border-left: 3px solid rgba(255,255,255,0.35);
-  padding: 28px;
-  border-radius: 6px;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.3s, background 0.3s;
-  display: flex;
-  align-items: flex-start;
-  gap: 18px;
-}
-
-.benefit-card.show { opacity: 1; transform: translateY(0); }
-
-.benefit-card:hover {
-  border-left-color: #fff;
-  background: #181818;
-}
-
-.benefit-icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 2px; }
-
-.benefit-body h3 {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 600;
-  font-size: 1rem;
-  color: #fff;
-  margin-bottom: 6px;
-}
-
-.benefit-body p { font-size: 0.92rem; color: #888; line-height: 1.6; }
-
-/* ── PROGRAM ── */
-.program { padding: 90px 0; border-top: 1px solid #1a1a1a; }
-.program h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); }
-.program-list { margin-top: 40px; display: flex; flex-direction: column; }
-
-.program-item {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 22px 0;
-  border-bottom: 1px solid #1a1a1a;
-}
-
-.program-item:first-child { border-top: 1px solid #1a1a1a; }
-
-.program-item .dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #aaa, #fff);
-  flex-shrink: 0;
-}
-
-.program-item span { font-size: 0.97rem; color: #ccc; }
-
-/* ── SOBRE ELA ── */
-.sobre-ela {
-  padding: 90px 0;
-  background: var(--dark-2);
-  border-top: 1px solid #1a1a1a;
-  border-bottom: 1px solid #1a1a1a;
-}
-
-.sobre-grid { display: grid; grid-template-columns: 1fr; gap: 50px; align-items: center; }
-
-.sobre-img img {
-  width: 100%;
-  max-width: 380px;
-  border-radius: 8px;
-  border: 1px solid #1e1e1e;
-  display: block;
-}
-
-.sobre-text h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); color: #fff; }
-
-.sobre-text .subtitle {
-  margin-top: 6px;
-  font-size: 0.78rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--silver-mid);
-}
-
-.sobre-text p { margin-top: 14px; color: #999; line-height: 1.85; font-size: 0.97rem; }
-
-/* ── DEPOIMENTOS ── */
-.depoimentos { padding: 90px 0; border-top: 1px solid #1a1a1a; }
-
-.depo-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
-}
-
-.depo-text { text-align: center; }
-.depo-text h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: #fff; }
-.depo-text p { margin-top: 12px; color: #888; font-size: 0.95rem; max-width: 400px; }
-
-.video-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 300px;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid #222;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-  flex-shrink: 0;
-}
-
-.video-wrapper iframe {
-  display: block;
-  width: 100%;
-  aspect-ratio: 9/16;
-  border: none;
-}
-
-/* ── DETAILS ── */
-.details {
-  padding: 90px 0;
-  background: var(--dark-2);
-  border-top: 1px solid #1a1a1a;
-  border-bottom: 1px solid #1a1a1a;
-}
-
-.details-grid { display: grid; grid-template-columns: 1fr; gap: 50px; align-items: center; }
-.details-text h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); margin-bottom: 30px; }
-
-.detail-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
-.detail-icon { font-size: 1.3rem; margin-top: 2px; }
-.detail-item p { color: #bbb; line-height: 1.5; }
-
-.detail-item strong {
-  display: block;
-  color: #ddd;
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 3px;
-}
-
-.details-img img {
-  width: 100%;
-  border-radius: 8px;
-  border: 1px solid #1e1e1e;
-  display: block;
-}
-
-/* ── CTA FINAL ── */
-.cta-final {
-  padding: 110px 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.cta-final::before {
-  content: '';
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 700px; height: 700px;
-  background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 65%);
-  pointer-events: none;
-}
-
-.cta-final h2 {
-  font-size: clamp(1.6rem, 3.8vw, 2.8rem);
-  color: #fff;
-  max-width: 700px;
-  margin: auto;
-  line-height: 1.25;
-}
-
-.cta-final h2 em {
-  font-style: italic;
-  background: linear-gradient(135deg, #aaa 0%, #fff 40%, #ccc 70%, #aaa 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: silverShine 3s ease infinite;
-}
-
-footer { padding: 30px 0; text-align: center; border-top: 1px solid #1a1a1a; }
-footer p { font-size: 0.8rem; color: #444; }
-
-/* ── DESKTOP ── */
-@media (min-width: 768px) {
-  /* hero: foto esquerda, texto direita */
-  .hero-inner {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 60px;
-  }
-  .hero-text { flex: 1; text-align: right; }
-  .hero-text p { margin-left: auto; }
-  .silver-line.hero-line { margin-left: auto; margin-right: 0; }
-  .hero-img { flex: 0 0 auto; order: -1; }
-
-  /* about: texto esquerda, foto direita */
-  .about-inner {
-    flex-direction: row;
-    align-items: center;
-    gap: 60px;
-  }
-  .about-img { width: auto; }
-  .about-img img { max-width: 460px; }
-
-  .audience-grid { grid-template-columns: 1fr 1fr; }
-  .benefits-grid { grid-template-columns: 1fr 1fr; }
-  .details-grid { grid-template-columns: 1fr 1fr; }
-  .sobre-grid { grid-template-columns: 1fr 1fr; }
-
-  .depo-inner {
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 70px;
-  }
-  .depo-text { text-align: left; }
-}
+@media(prefers-reduced-motion:reduce){.fill{transition:none}}
 </style>
 </head>
 <body>
 
-<!-- HERO -->
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
 <section class="hero">
-<div class="container">
-<div class="hero-inner">
-
-  <div class="hero-img fade-up">
-    <img src="https://i.imgur.com/WM0icb7.jpeg" alt="Débora Knust">
+  <!-- COLUNA FOTO — troque o src pela URL nova quando tiver -->
+  <div class="hero__photo-col">
+    <img
+      src="COLOQUE_AQUI_A_URL_DA_NOVA_FOTO_DO_HERO"
+      alt="Débora Knust — Tração Jurídica"
+      id="hero-photo"
+    >
   </div>
 
-  <div class="hero-text">
-    <div class="fade-up">
-      <span class="hero-date-tag">Evento Presencial · 22.05.2026</span>
-      <span class="event-name">Tração Jurídica</span>
-    </div>
-    <div class="fade-up">
-      <span class="silver-line hero-line"></span>
-      <p>Um evento intenso e estratégico para advogados que decidiram sair da operação e liderar o crescimento com método, estrutura e previsibilidade.</p>
-    </div>
-    <div class="fade-up">
-      <a href="https://wa.me/5521975076447?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
-    </div>
-  </div>
+  <!-- COLUNA TEXTO -->
+  <div class="hero__text-col wrap">
 
-</div>
-</div>
+    <div class="fade-up">
+      <span class="hero-date-tag">Evento Presencial · 4 de novembro de 2026</span>
+      <span class="event-name">Tração<br>Jurídica</span>
+    </div>
+
+    <div class="fade-up">
+      <p class="hero__sub">Um evento intenso e estratégico para advogados que decidiram sair da operação e liderar o crescimento com método, estrutura e previsibilidade.</p>
+    </div>
+
+    <div class="fade-up hero__cta-row">
+      <a href="https://wa.me/5521975076647?text=Ol%C3%A1!%20Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdico." class="btn" target="_blank" rel="noopener">Garantir minha vaga</a>
+    </div>
+
+    <div class="fade-up hero__meta-row">
+      <span class="chip">Quarta-feira, 4 de novembro</span>
+      <span class="chip">Presencial · 9h às 17h</span>
+      <span class="chip">12 vagas</span>
+    </div>
+
+  </div>
 </section>
 
-<!-- ASSUMA O COMANDO -->
-<section class="about">
-<div class="container">
-  <div class="about-inner">
-
-    <div class="about-text">
-      <h2>Assuma o comando do seu escritório de advocacia</h2>
-      <span class="silver-line"></span>
-      <p>Se o seu escritório depende exclusivamente de você, existe um problema estrutural. Ignorar isso custa caro: estagnação, sobrecarga e crescimento limitado.</p>
-      <p style="margin-top:12px">O Tração Jurídica nasce para mudar esse cenário. Aqui, você assume o papel de gestor com visão estratégica, estrutura e direção clara para crescer com consistência.</p>
-      <a href="https://wa.me/5521975076447?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
-    </div>
-
-    <div class="about-img">
-      <img src="https://i.imgur.com/cHdD3TW.jpeg" alt="Ambiente do evento">
-    </div>
-
-  </div>
-</div>
-</section>
-
-<!-- PARA QUEM -->
-<section class="audience">
-<div class="container">
-  <div class="audience-grid">
-    <div class="card positive">
-      <h3>Para quem é</h3>
-      <ul>
-        <li><span class="icon">✅</span> Advogados que querem estruturar e escalar</li>
-        <li><span class="icon">✅</span> Quem busca previsibilidade de crescimento</li>
-        <li><span class="icon">✅</span> Profissionais que querem liderar com estratégia</li>
-        <li><span class="icon">✅</span> Quem está cansado de depender só do próprio esforço</li>
-      </ul>
-    </div>
-    <div class="card negative">
-      <h3>Não é para quem</h3>
-      <ul>
-        <li><span class="icon">✖</span> Acredita que gestão é opcional</li>
-        <li><span class="icon">✖</span> Espera crescimento automático</li>
-        <li><span class="icon">✖</span> Não quer delegar ou estruturar</li>
-        <li><span class="icon">✖</span> Prefere apagar incêndios</li>
-      </ul>
+<!-- ══════════════════════════════════
+     SOBRE O EVENTO (corte branco)
+══════════════════════════════════ -->
+<section class="sobre-evento">
+  <div class="wrap">
+    <p class="mono" style="color:#888">O evento</p>
+    <h2>Assuma o comando do seu escritório</h2>
+    <p>Se o seu escritório depende exclusivamente de você, existe um problema estrutural. Ignorar isso custa caro: <strong>estagnação, sobrecarga e crescimento limitado.</strong></p>
+    <p>O Tração Jurídica nasce para mudar esse cenário. Mais do que conteúdo, este é um ambiente de decisão. Você vai reposicionar a forma como pensa, estrutura e lidera o seu negócio jurídico.</p>
+    <div style="margin-top:32px">
+      <a href="https://wa.me/5521975076647?text=Ol%C3%A1!%20Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdico." class="btn" target="_blank" rel="noopener">Garantir minha vaga</a>
     </div>
   </div>
-</div>
 </section>
 
-<!-- PREÇO -->
+<!-- ══════════════════════════════════
+     PILARES
+══════════════════════════════════ -->
+<section id="pilares">
+  <div class="wrap">
+    <p class="mono">O conteúdo</p>
+    <h2 style="margin-top:8px">Cinco pilares, um escritório</h2>
+    <p class="intro">Escolha um pilar para ver o que será trabalhado. Eles dependem uns dos outros, nesta ordem:</p>
+
+    <div class="chain" aria-label="Relação entre os pilares">
+      <span class="step"><b>Mentalidade</b> decide</span>
+      <span class="arrow" aria-hidden="true">→</span>
+      <span class="step"><b>Processos</b> organizam</span>
+      <span class="arrow" aria-hidden="true">→</span>
+      <span class="step"><b>Tecnologia</b> escala</span>
+      <span class="arrow" aria-hidden="true">→</span>
+      <span class="step"><b>Pessoas</b> executam</span>
+      <span class="arrow" aria-hidden="true">→</span>
+      <span class="step"><b>Financeiro</b> mede</span>
+    </div>
+    <p class="chain-note">O que o financeiro mede volta para a cabeça do dono e muda as próximas decisões.</p>
+
+    <div class="explorer">
+      <div class="tabs" id="tabs" role="tablist" aria-label="Pilares do Tração Jurídica"></div>
+      <div class="panel" id="panel" role="tabpanel" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     PARA QUEM
+══════════════════════════════════ -->
+<section id="para-quem">
+  <div class="wrap">
+    <p class="mono">Para quem é</p>
+    <h2 style="margin-top:8px">Um evento com filtro</h2>
+
+    <div class="two">
+      <div class="yes">
+        <h3>É para você se</h3>
+        <ul>
+          <li>Você é dono ou dona de escritório e concentra jurídico, comercial, financeiro e equipe.</li>
+          <li>O escritório cresceu em clientes e processos mais rápido do que em estrutura.</li>
+          <li>Você quer liderar com método, cultura e estratégia.</li>
+          <li>Está cansado de depender apenas do próprio esforço para crescer.</li>
+        </ul>
+      </div>
+      <div class="no">
+        <h3>Talvez não seja se</h3>
+        <ul>
+          <li>Você acredita que gestão é opcional na advocacia.</li>
+          <li>Espera que o crescimento aconteça sozinho.</li>
+          <li>Resiste em delegar, estruturar e assumir o papel de liderança.</li>
+          <li>Prefere continuar apagando incêndios ao invés de construir um negócio sólido.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     PREÇO (corte branco)
+══════════════════════════════════ -->
 <section class="price-banner">
-<div class="container">
-  <p class="label">Investimento</p>
-  <div class="price-value">
-    <span class="price-currency">R$</span>997
+  <div class="wrap">
+    <p class="mono">Investimento</p>
+    <div class="price-value">
+      <span class="price-currency">R$</span>997
+    </div>
+    <p class="price-note">No Pix ou no cartão · Vagas limitadas</p>
+    <a href="https://wa.me/5521975076647?text=Ol%C3%A1!%20Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdico." class="btn" target="_blank" rel="noopener">Garantir minha vaga</a>
   </div>
-  <p class="price-note">Vagas limitadas</p>
-  <a href="https://wa.me/5521975076447?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
-</div>
 </section>
 
-<!-- BENEFÍCIOS -->
-<section class="benefits">
-<div class="container">
-  <div class="section-header">
-    <h2>Neste evento, você vai aprender</h2>
-    <span class="silver-line center"></span>
-  </div>
-  <div class="benefits-grid">
-    <div class="benefit-card">
-      <div class="benefit-icon">🎯</div>
-      <div class="benefit-body">
-        <h3>Advogado-comandante</h3>
-        <p>Clareza de posicionamento e tomada de decisão estratégica</p>
-      </div>
-    </div>
-    <div class="benefit-card">
-      <div class="benefit-icon">⚙️</div>
-      <div class="benefit-body">
-        <h3>Engenharia interna</h3>
-        <p>Fluxos, processos e estrutura que sustentam o crescimento</p>
-      </div>
-    </div>
-    <div class="benefit-card">
-      <div class="benefit-icon">📊</div>
-      <div class="benefit-body">
-        <h3>Dados que decidem</h3>
-        <p>Transformar números em estratégia e previsibilidade</p>
-      </div>
-    </div>
-    <div class="benefit-card">
-      <div class="benefit-icon">🏆</div>
-      <div class="benefit-body">
-        <h3>Time de alta performance</h3>
-        <p>Cultura, liderança e desenvolvimento de equipe</p>
-      </div>
-    </div>
-    <div class="benefit-card">
-      <div class="benefit-icon">📈</div>
-      <div class="benefit-body">
-        <h3>Escala com lucro</h3>
-        <p>Crescimento com controle, organização e leveza</p>
-      </div>
+<!-- ══════════════════════════════════
+     DIAGNÓSTICO RÁPIDO
+══════════════════════════════════ -->
+<section id="diagnostico">
+  <div class="wrap">
+    <p class="mono">Diagnóstico rápido</p>
+    <h2 style="margin-top:8px">Onde seu escritório está hoje?</h2>
+    <p class="intro">Dez afirmações, cerca de dois minutos. Marque o que descreve o seu escritório de verdade, não o que você gostaria que descrevesse. Nada é enviado nem salvo.</p>
+
+    <div class="diag">
+      <form id="quiz" onsubmit="return false"></form>
+      <aside class="score" aria-live="polite">
+        <p class="mono">Seu placar</p>
+        <div class="rows" id="rows"></div>
+        <div class="summary-block" id="summary"></div>
+      </aside>
     </div>
   </div>
-  <div style="text-align:center; margin-top:40px">
-    <a href="https://wa.me/5521975076447?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
-  </div>
-</div>
 </section>
 
-<!-- PROGRAMAÇÃO -->
-<section class="program">
-<div class="container">
-  <h2>Programação do dia</h2>
-  <span class="silver-line"></span>
-  <div class="program-list">
-    <div class="program-item"><span class="dot"></span><span>Posicionamento e visão estratégica</span></div>
-    <div class="program-item"><span class="dot"></span><span>Estrutura interna e processos</span></div>
-    <div class="program-item"><span class="dot"></span><span>Gestão orientada por dados</span></div>
-    <div class="program-item"><span class="dot"></span><span>Construção de time e liderança</span></div>
-    <div class="program-item"><span class="dot"></span><span>Crescimento com previsibilidade</span></div>
-  </div>
-  <a href="https://wa.me/5521975076447?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
-</div>
-</section>
+<!-- ══════════════════════════════════
+     TURMA / PAGAMENTO
+══════════════════════════════════ -->
+<section id="turma">
+  <div class="wrap">
+    <p class="mono">Informações</p>
+    <h2 style="margin-top:8px">A turma de 4 de novembro</h2>
+    <dl class="turma" id="turma-dl"></dl>
 
-<!-- SOBRE ELA -->
-<section class="sobre-ela">
-<div class="container">
-  <div class="sobre-grid">
-    <div class="sobre-img">
-      <img src="https://i.imgur.com/sEtzkjk.jpeg" alt="Débora Knust">
-    </div>
-    <div class="sobre-text">
-      <h2>Débora Knust</h2>
-      <p class="subtitle">Advogada · Empresária Jurídica · Mentora</p>
-      <span class="silver-line"></span>
-      <p>Advogada, especialista em Direito Previdenciário e Planejamento Previdenciário. Empresária jurídica à frente do escritório Knust Advocacia Especializada.</p>
-      <p>Palestrante, professora de pós-graduação e mentora de advogados nas áreas de gestão de escritório e Direito Previdenciário. Presidente da Comissão de Direito Previdenciário da OAB de Duque de Caxias/RJ.</p>
-      <p>Atua diretamente na gestão do próprio escritório, vivenciando na prática os desafios da advocacia e do empreendedorismo jurídico. Como mentora, orienta advogados na estruturação, organização e crescimento sustentável de seus escritórios.</p>
-      <p>Seu trabalho une prática previdenciária com gestão estratégica, com foco em lucratividade, posicionamento e desenvolvimento de negócios jurídicos mais eficientes.</p>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- DEPOIMENTOS -->
-<section class="depoimentos">
-<div class="container">
-  <div class="depo-inner">
-    <div class="depo-text">
-      <h2>Veja o que diz quem já viveu essa experiência</h2>
-      <span class="silver-line"></span>
-      <p>Resultados reais de advogados que decidiram assumir o comando dos seus escritórios.</p>
-      <a href="https://wa.me/5521975076447?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
-    </div>
-    <div class="video-wrapper">
-      <iframe
-        src="https://drive.google.com/file/d/1G0asuON451Jg8Q15IxcEZaOb_inSzl2m/preview?autoplay=1"
-        title="Depoimento"
-        allow="autoplay; fullscreen"
-        allowfullscreen>
-      </iframe>
+    <div class="pay" id="pagamento">
+      <div class="qrbox">
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEYCAYAAACHjumMAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAABGKADAAQAAAABAAABGAAAAADGOxDpAAARzElEQVR4Ae3d0Y4bSQ5E0e3F/P8ve1uDeeTVdpiRU1XWnUeajmQdGUQhBWG+fn3/9x//U0ABBQ4I/PdAppEKKKDA3wIuGP8hKKDAMQEXzDFagxVQwAXjvwEFFDgm8NeU/PX1NZVvV6P7aZo/7U8f+HT+6Xlofjo3daYcqrfyKYfOTeun3U7Pnz4v9U8OvsGQlnUFFFgLuGDWhAYooAAJuGBIxroCCqwFXDBrQgMUUIAEXDAkY10BBdYC47dIlDrdElNvs57eorfmpJx0nqbFlEVzTr2vWtpPz0s51J/OQ/mUQ+dSTqu/NQ/lUJ2ei/pbdXKb8n2DmVSsKaBARcAFU2E0RAEFJgEXzKRiTQEFKgIumAqjIQooMAm4YCYVawooUBGIvkWiE5NbZcp41Vu34jQP5VOdZk37T+dQPjlQP9XpeSk/7adzqU7nUv+n1Vs+9Dkmnr7BJFr2KqBAJOCCibhsVkCBRMAFk2jZq4ACkYALJuKyWQEFEgEXTKJlrwIKRAKVb5GiEy9sbt2u0yM0bt1f2emc6bnUT+dSnRxa/TQnnduqp/On51L+Vc+bzp/0+waTaNmrgAKRgAsm4rJZAQUSARdMomWvAgpEAi6YiMtmBRRIBFwwiZa9CigQCfyR3yLRbXx6e/+U/ugT/26m50pzWv3p55Wemz5vOk+an87/5H7fYJ786Tm7AjcXcMHc/ANyPAWeLOCCefKn5+wK3FzABXPzD8jxFHiygAvmyZ+esytwc4HKt0h0637Vs6e3+mk/PRc5pPmt/nQe6qfnpTrNT/nUT/mUQ/1p/W7zpPOf9knm8Q0m0bJXAQUiARdMxGWzAgokAi6YRMteBRSIBFwwEZfNCiiQCLhgEi17FVAgEoi+RUpv16NJ/oVmul2n52r106O18ml+OjetUz7Nn+ZTP+Wn86T9T5mHnovmv6LuG8wV6p6pwIcIuGA+5IP2MRW4QsAFc4W6ZyrwIQIumA/5oH1MBa4QcMFcoe6ZCnyIwNf3Tf2vP+1ZW7frRNPKJ3c6l/ppHspJ++lcqlM+9dOc1E91Ovcp+fRcT677BvPkT8/ZFbi5gAvm5h+Q4ynwZAEXzJM/PWdX4OYCLpibf0COp8CTBVwwT/70nF2BmwuMv0Wi23h6Frqlpxzqp3zKoX7Kpxzqp3yqt3Ion+p0Lj0v5aT9lEN1mpP6T8/z9HxyI+f0edOcqd83GPqUrCugwFrABbMmNEABBUjABUMy1hVQYC3gglkTGqCAAiTggiEZ6woosBYYv0VKU+l2erpVfpfdyqEzaJ7T51J+a07KadVTNzq35UD5VKdzW89F51I+9Z+ek+ahc6lOOdNz+QYzqVhTQIGKgAumwmiIAgpMAi6YScWaAgpUBFwwFUZDFFBgEnDBTCrWFFCgIhB9i5TcHr+mo1vodHLKoXnS/lZO+lx0LuVQPz0v5aR1yj89D52bzp/2t57r9Pw0Z/q8J/t9gzmpa7YCHy7ggvnwfwA+vgInBVwwJ3XNVuDDBVwwH/4PwMdX4KSAC+akrtkKfLhA9C1SakW33OntOuWk81zVT/OTQ9p/1XPR/DQPPRf1U711LuXQnFRPc67qJ096LupP5vcNhhStK6DAWsAFsyY0QAEFSMAFQzLWFVBgLeCCWRMaoIACJOCCIRnrCiiwFjj6LRLdNqdTU87J2+/XjJRP89BzUQ71Uz7ltPppnvRcymnNSfPQuVfVTz9vKz/NSTx9g0m07FVAgUjABRNx2ayAAomACybRslcBBSIBF0zEZbMCCiQCLphEy14FFIgEKt8i0S10NMl3c/rtAJ1LOdRPc1I/5V+Vk55L/elzpf3kSfOk9dP5NE/LgXLouaif5kzrdG6S4xtMomWvAgpEAi6YiMtmBRRIBFwwiZa9CigQCbhgIi6bFVAgEXDBJFr2KqBAJPD1fRP9K/obQzPdNqfRlDMc+XcpzaccqtM8dG7aT+e26nebh54rnZP6Kb9VP/2503Ol59LzUg71Uz2Z0zcYUrSugAJrARfMmtAABRQgARcMyVhXQIG1gAtmTWiAAgqQgAuGZKwroMBaYPwtUnJL/G6CVg7dfqf5aT89G+Wk/fRcaQ71U346/+l8mpPOTet3y2/5kwM9L51L/Wn+1O8bzKRiTQEFKgIumAqjIQooMAm4YCYVawooUBFwwVQYDVFAgUnABTOpWFNAgYrA0d8i0YR0a0233K0cOpfyqZ7OSTmteSi/NSflU52eqzVPK59y6LmoTs+V5lMOndvKpxyah/qnOX2DmVSsKaBARcAFU2E0RAEFJgEXzKRiTQEFKgIumAqjIQooMAm4YCYVawooUBGIfouUnpjcNr+y036ah3LoVjzNoXzKSeutOelcmp/OpX7KpxzqpzqdS/lpf5pDc6Z1OjfNoX7KJx/KoXqS7xsMKVpXQIG1gAtmTWiAAgqQgAuGZKwroMBawAWzJjRAAQVIwAVDMtYVUGAtUPktEk1Bt83UT7fclEP9lH86h85N6/RcND/lUw71U/2qc2metH56/tP56fOe7qfnnf69+QZz+tMwX4EPFnDBfPCH76MrcFrABXNa2HwFPljABfPBH76PrsBpARfMaWHzFfhggfG3SORBt8fUT/XptvnVS/nUT/mtHMqneU6fS/O06un81E/1lhvlkwOdS/2n89Nz0/lP5yfz+AZDn4Z1BRRYC7hg1oQGKKAACbhgSMa6AgqsBVwwa0IDFFCABFwwJGNdAQXWAtFvkdLb9fV0Dwug23Vyo/70sSk/zTndT89L81N/Oiflpzk0Tys/nSftp/kph54ryfENhnStK6DAWsAFsyY0QAEFSMAFQzLWFVBgLeCCWRMaoIACJOCCIRnrCiiwFjj6LRLdNqdTU87J2+/XjJRP89BzUQ71Uz7ltPppnvRcymnNSfPQuVfVTz9vKz/NSTx9g0m07FVAgUjABRNx2ayAAomACybRslcBBSIBF0zEZbMCCiQCLphEy14FFIgEKt8i0S10NMl3c/rtAJ1LOdRPc1I/5V+Vk55L/elzpf3kSfOk9dP5NE/LgXLouaif5kzrdG6S4xtMomWvAgpEAi6YiMtmBRRIBFwwiZa9CigQCbhgIi6bFVAgEXDBJFr2KqBAJPD1fRP9K/obQzPdNqfRlDMc+XcpzaccqtM8dG7aT+e26nebh54rnZP6Kb9VP/2503Ol59LzUg71Uz2Z0zcYUrSugAJrARfMmtAABRQgARcMyVhXQIG1gAtmTWiAAgqQgAuGZKwroMBaYPwtUnJL/G6CVg7dfqf5aT89G+Wk/fRcaQ71U346/+l8mpPOTet3y2/5kwM9L51L/Wn+1O8bzKRiTQEFKgIumAqjIQooMAm4YCYVawooUBFwwVQYDVFAgUnABTOpWFNAgYrA+Fuk9Dab+isTfoek+Wl/a85WTjp/2k9zUg59m0A5V9VpztZzUU76vK2c9NzUh/KTHN9gSNG6AgqsBVwwa0IDFFCABFwwJGNdAQXWAi6YNaEBCihAAi4YkrGugAJrgfG3SJRKt8fU37otb52b5qTP1cpPz6V+mif9XCiHzqV8ykn76VyqUz71p3V6LsqheSgn7T99LuVPdd9gJhVrCihQEXDBVBgNUUCBScAFM6lYU0CBioALpsJoiAIKTAIumEnFmgIKVATG3yKlya1bbjqX8qmfbuOpn+rpudSfzkM5NGerns5J51IOPRf1Uz7lUD/V03Mph+rpnNSfzkk5rTkpZ6r7BjOpWFNAgYqAC6bCaIgCCkwCLphJxZoCClQEXDAVRkMUUGAScMFMKtYUUKAiEP0WqXLidwjditPtd9qfznk6P52H+mlO6idP6qd6ei7lPGUeel6an/rJgeqUT/1pvTUnnTvN7xsMaVlXQIG1gAtmTWiAAgqQgAuGZKwroMBawAWzJjRAAQVIwAVDMtYVUGAtEH2LdMUt9O88Ic053XK/8lv9NGvrXMq/W508ac7Uh3LSOp2b5lA/OdC51E/5aU6rn+aZ6r7BTCrWFFCgIuCCqTAaooACk4ALZlKxpoACFQEXTIXREAUUmARcMJOKNQUUqAiM3yLRbTbdQtMklEP9lJ/mUD7V6VzqT+ut+VtztuZJHWj+dJ40h/pp/nQeyqFzW/l0LtVb81DOdK5vMJOKNQUUqAi4YCqMhiigwCTggplUrCmgQEXABVNhNEQBBSYBF8ykYk0BBSoC47dIleQHhaS3+skt+u8wpPPQGTQn5VM/5VOd8qm/dS7lUz2dk3LS+encNIfmSfNP9vsGQ5+SdQUUWAu4YNaEBiigAAm4YEjGugIKrAVcMGtCAxRQgARcMCRjXQEF1gJ/TQl0qzz1XlmjW3ean/qpTs9G+dTfqtOcNA/V03koh+ZJ89P+1jyt+Wme9Lmon/Jb86fnUv9U9w1mUrGmgAIVARdMhdEQBRSYBFwwk4o1BRSoCLhgKoyGKKDAJOCCmVSsKaBARWD8FomST99a07l0i079NCflUH+aT/2tOs3fyqec1CfNoedqnZvmp/00J+WQD9Upn/qpns5D5yY5vsHQp2FdAQXWAi6YNaEBCihAAi4YkrGugAJrARfMmtAABRQgARcMyVhXQIG1QPQtEp2W3CpTxqtOt9bv/k7yZ2k+PRflUH8y46uX8tOctL81f3puq9/530um/64anr7BvP9M/FMFFFgIuGAWeP5VBRR4L+CCee/jnyqgwELABbPA868qoMB7ARfMex//VAEFFgKVb5EW5x/5q43b79dg6a172p8+fJqfOlA+5aT9lHPagfLTedJ+Ojetk3Oac8X8vsGkn5L9CijwYwEXzI+pbFRAgVTABZOK2a+AAj8WcMH8mMpGBRRIBVwwqZj9CijwY4E/8lskunWnW3Tq/7HibzbSPBRHc1JO2p/mtOakHJqH+tPnTfvpXKqn+dRP+U/w8Q2GPj3rCiiwFnDBrAkNUEABEnDBkIx1BRRYC7hg1oQGKKAACbhgSMa6AgqsBSrfIqW33+up/09AertOcZRDz0v9lN+qp/Ok/a05r8qh523NQ/npv4e0n+ZvzZPmT/2+wUwq1hRQoCLggqkwGqKAApOAC2ZSsaaAAhUBF0yF0RAFFJgEXDCTijUFFKgIRN8itW65K5MXQ+i56Daejk77KYfmoXrr3HSe9Ny0n+aheurT6qccmvMqh3Qeeq5kft9gSN26AgqsBVwwa0IDFFCABFwwJGNdAQXWAi6YNaEBCihAAi4YkrGugAJrga/vG+Ff6xQDFFBAgUHAN5gBxZICCnQEXDAdR1MUUGAQcMEMKJYUUKAj4ILpOJqigAKDwP8AGbSdUoErbjAAAAAASUVORK5CYII="
+          alt="QR Code Pix — R$ 997,00"
+          width="168" height="168"
+        >
+      </div>
+      <div>
+        <h3>Garanta sua vaga</h3>
+        <p>Investimento de R$ 997,00, no Pix ou no cartão. Para pagar no Pix, aponte a câmera do aplicativo do seu banco para o QR Code ou use o Pix copia e cola abaixo.</p>
+        <div class="field">
+          <input type="text" id="pixcode" readonly aria-label="Pix copia e cola">
+          <button type="button" class="btn" id="copypix">Copiar código Pix</button>
+        </div>
+        <span id="copymsg" role="status"></span>
+        <div class="actions">
+          <a class="btn ghost" href="https://mpago.la/16LAVCT" target="_blank" rel="noopener">Pagar no cartão</a>
+        </div>
+        <p class="note">Depois de pagar, envie o comprovante para o WhatsApp <b>(21) 97507-6647</b> para confirmar sua vaga.</p>
+        <div class="actions">
+          <a class="btn" href="https://wa.me/5521975076647?text=Ol%C3%A1!%20Segue%20o%20comprovante%20de%20pagamento%20do%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdico." target="_blank" rel="noopener">Enviar comprovante no WhatsApp</a>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 </section>
 
-<!-- DETALHES -->
-<section class="details">
-<div class="container">
-  <div class="details-grid">
-    <div class="details-text">
-      <h2>Detalhes do evento</h2>
-      <span class="silver-line"></span>
-      <div class="detail-item">
-        <span class="detail-icon">📅</span>
-        <p><strong>Data</strong>22 de maio de 2026</p>
+<!-- ══════════════════════════════════
+     SOBRE ELA
+══════════════════════════════════ -->
+<section id="quem">
+  <div class="wrap">
+    <p class="mono">Quem conduz</p>
+
+    <div class="sobre-grid">
+      <div class="sobre-img reveal">
+        <img src="https://i.imgur.com/sEtzkjk.jpeg" alt="Débora Knust">
       </div>
-      <div class="detail-item">
-        <span class="detail-icon">⏰</span>
-        <p><strong>Horário</strong>9h às 17h</p>
+
+      <div class="sobre-text reveal">
+        <h2>Débora Knust</h2>
+        <p class="subtitle">Advogada · Empresária Jurídica · Mentora</p>
+
+        <p>Advogada especialista em Direito Previdenciário e Planejamento Previdenciário, CEO do Knust Advocacia Especializada, expert em gestão de escritório e mentora de advogados.</p>
+        <p>Atua diretamente na gestão do próprio escritório, vivenciando na prática os desafios da advocacia e do empreendedorismo jurídico. Como mentora, orienta advogados na estruturação, organização e crescimento sustentável de seus negócios jurídicos.</p>
+        <p>Seu trabalho une prática previdenciária com gestão estratégica, com foco em lucratividade, posicionamento e desenvolvimento de negócios jurídicos mais eficientes.</p>
+
+        <ul class="cargos">
+          <li>Diretora Adjunta de Previdência da Baixada Fluminense da OAB RJ</li>
+          <li>Diretora da ESA da OAB/DC</li>
+          <li>Coordenadora das Comissões da OAB/DC</li>
+          <li>Presidente da Comissão de Cursos do IAPE</li>
+          <li>Coordenadora e professora de pós-graduação — Masterjus, Legale e I9</li>
+          <li>Presidente da Comissão de Direito Previdenciário da OAB de Duque de Caxias/RJ</li>
+        </ul>
       </div>
-      <div class="detail-item">
-        <span class="detail-icon">📍</span>
-        <p><strong>Local</strong>Rossi Multi — Duque de Caxias / RJ</p>
-      </div>
-      <div class="detail-item">
-        <span class="detail-icon">💰</span>
-        <p><strong>Investimento</strong>R$ 997 · Vagas limitadas</p>
-      </div>
-      <a href="https://wa.me/5521975076447?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
-    </div>
-    <div class="details-img">
-      <img src="https://static.wixstatic.com/media/6522c5_5af5c75e3ff843bea33f69e907bc5ea1~mv2.jpg/v1/fit/w_930,h_562,q_90,enc_avif,quality_auto/6522c5_5af5c75e3ff843bea33f69e907bc5ea1~mv2.jpg" alt="Local do evento">
     </div>
   </div>
-</div>
 </section>
 
-<!-- CTA FINAL -->
+<!-- ══════════════════════════════════
+     DEPOIMENTOS
+══════════════════════════════════ -->
+<section id="depoimentos">
+  <div class="wrap">
+    <div class="depo-inner">
+      <div class="depo-text reveal">
+        <p class="mono" style="text-align:inherit">Depoimentos</p>
+        <h2>Veja o que diz quem já viveu essa experiência</h2>
+        <p>Resultados reais de advogados que decidiram assumir o comando dos seus escritórios.</p>
+        <div style="margin-top:24px">
+          <a href="https://wa.me/5521975076647?text=Ol%C3%A1!%20Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdico." class="btn" target="_blank" rel="noopener">Garantir minha vaga</a>
+        </div>
+      </div>
+
+      <div class="video-wrapper reveal">
+        <iframe
+          src="https://drive.google.com/file/d/1G0asuON451Jg8Q15IxcEZaOb_inSzl2m/preview"
+          title="Depoimento — Tração Jurídica"
+          allow="autoplay; fullscreen"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     DETALHES DO EVENTO
+══════════════════════════════════ -->
+<section id="local">
+  <div class="wrap">
+    <p class="mono">Onde e quando</p>
+    <h2 style="margin-top:8px">Detalhes do evento</h2>
+
+    <div class="details-grid" style="margin-top:32px">
+      <div class="reveal">
+        <div class="detail-item">
+          <span class="detail-icon">📅</span>
+          <p><strong>Data</strong>Quarta-feira, 4 de novembro de 2026</p>
+        </div>
+        <div class="detail-item">
+          <span class="detail-icon">⏰</span>
+          <p><strong>Horário</strong>9h às 17h</p>
+        </div>
+        <div class="detail-item">
+          <span class="detail-icon">📍</span>
+          <p>
+            <strong>Local</strong>
+            Edifício Rossi (Rossi Multi Business)<br>
+            Rodovia Washington Luís, 2500–2550<br>
+            Parque Duque / Parque Sarapuí<br>
+            Duque de Caxias — RJ<br>
+            <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Rossi+Multi+Business+Rodovia+Washington+Lu%C3%ADs+2500+Duque+de+Caxias+RJ" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">Ver no mapa ↗</a>
+          </p>
+        </div>
+        <div class="detail-item">
+          <span class="detail-icon">💰</span>
+          <p><strong>Investimento</strong>R$ 997 · Pix ou cartão · Vagas limitadas</p>
+        </div>
+        <div style="margin-top:8px">
+          <a href="https://wa.me/5521975076647?text=Ol%C3%A1!%20Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdico." class="btn" target="_blank" rel="noopener">Garantir minha vaga</a>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <img
+          src="https://static.wixstatic.com/media/6522c5_5af5c75e3ff843bea33f69e907bc5ea1~mv2.jpg/v1/fit/w_930,h_562,q_90,enc_avif,quality_auto/6522c5_5af5c75e3ff843bea33f69e907bc5ea1~mv2.jpg"
+          alt="Rossi Multi Business — Duque de Caxias/RJ"
+          style="width:100%;border-radius:10px;border:1px solid var(--line)"
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     CTA FINAL
+══════════════════════════════════ -->
 <section class="cta-final">
-<div class="container">
-  <h2>Você vai continuar preso ao operacional do seu escritório ou vai finalmente <em>assumir o comando?</em></h2>
-  <a href="https://wa.me/5521975076447?text=Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdica" class="btn">Garantir minha vaga</a>
-</div>
+  <div class="wrap">
+    <h2>Você vai continuar preso ao operacional ou vai finalmente <em>assumir o comando?</em></h2>
+    <a href="https://wa.me/5521975076647?text=Ol%C3%A1!%20Quero%20garantir%20minha%20vaga%20no%20Tra%C3%A7%C3%A3o%20Jur%C3%ADdico." class="btn" target="_blank" rel="noopener">Garantir minha vaga</a>
+  </div>
 </section>
 
+<!-- ══════════════════════════════════
+     FOOTER
+══════════════════════════════════ -->
 <footer>
-<div class="container">
-  <p>© 2026 Tração Jurídica · Todos os direitos reservados</p>
-</div>
+  <div class="wrap">
+    <p>© 2026 Tração Jurídica · Débora Knust · Todos os direitos reservados</p>
+    <p style="margin-top:10px">Conteúdo informativo e educacional sobre gestão de escritórios de advocacia, elaborado em observância ao Provimento 205/2021 do Conselho Federal da OAB. O curso é uma formação em gestão e não um serviço advocatício. Não há promessa de resultado financeiro nem de captação de clientes.</p>
+  </div>
 </footer>
 
+<!-- ══════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════ -->
 <script>
-const cards = document.querySelectorAll('.benefit-card');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('show'), i * 100);
-      observer.unobserve(entry.target);
+(function(){
+  'use strict';
+
+  /* ── DADOS ─────────────────────────── */
+  var TURMA = {
+    data:        "Quarta-feira, 4 de novembro de 2026",
+    formato:     "Presencial",
+    horario:     "Das 9h às 17h",
+    local:       "Edifício Rossi (Rossi Multi Business)<br>Rodovia Washington Luís, 2500–2550, Parque Duque / Parque Sarapuí, Duque de Caxias, RJ<br><a class=\"maplink\" href=\"https://www.google.com/maps/search/?api=1&query=Rossi+Multi+Business+Rodovia+Washington+Lu%C3%ADs+2500+Duque+de+Caxias+RJ\" target=\"_blank\" rel=\"noopener\">Ver no mapa ↗</a>",
+    vagas:       "12 vagas",
+    investimento:"R$ 997,00, no Pix ou no cartão"
+  };
+
+  var PIX = "00020126360014BR.GOV.BCB.PIX0114+55219692828805204000053039865406997.005802BR5901N6001C62100506TRACAO6304B248";
+
+  var PILLARS = [
+    {
+      id:"mentalidade", nome:"Cultura e mentalidade do dono", curto:"Mentalidade",
+      tese:"Do advogado que executa ao dono que dirige.",
+      thesis:"O escritório cresce até onde a mentalidade do dono deixa.",
+      falha:"Toda decisão passa por você. Você se enxerga como o advogado mais ocupado do escritório, e não como quem dirige uma empresa que presta serviço jurídico.",
+      trabalho:[
+        "A virada de chave: de quem executa para quem dirige.",
+        "Valores e regras do jogo escritos, e não subentendidos.",
+        "O que você tolera vira a cultura do escritório.",
+        "Quais decisões só o dono toma e quais precisam ser delegadas.",
+        "Cultura como o que acontece quando você não está na sala."
+      ],
+      pergunta:"Se você sumisse por 15 dias, o escritório continuaria funcionando do jeito que você gostaria?"
+    },
+    {
+      id:"processos", nome:"Processos", curto:"Processos",
+      tese:"Se depende de memória, é sorte.",
+      thesis:"Se depende de memória, não é processo. É sorte.",
+      falha:"Prazo, andamento e atendimento dependem de quem lembrou. Cada pessoa faz de um jeito e o cliente sente a diferença.",
+      trabalho:[
+        "O caminho do cliente, do primeiro contato ao pós-venda.",
+        "Quem faz o quê, em que ordem e com que prazo.",
+        "Rotinas e checklists para tarefas que se repetem.",
+        "Controle de prazos e andamentos por sistema, não por lembrança.",
+        "A estrutura em pilares do escritório da Débora como estudo de caso."
+      ],
+      pergunta:"Qual tarefa do escritório só você sabe fazer?"
+    },
+    {
+      id:"tecnologia", nome:"Tecnologia", curto:"Tecnologia",
+      tese:"Ferramenta sem processo automatiza a bagunça.",
+      thesis:"Tecnologia em cima de bagunça só automatiza a bagunça.",
+      falha:"Muitas ferramentas, pouco uso. A informação fica espalhada entre WhatsApp, planilha e a cabeça de cada pessoa.",
+      trabalho:[
+        "Primeiro o processo, depois a ferramenta.",
+        "Como encaixar sistema de gestão, WhatsApp, assinatura eletrônica e armazenamento.",
+        "Automação e agentes de IA como apoio ao atendimento e follow-up, com supervisão humana.",
+        "Sigilo profissional e LGPD na escolha e uso das ferramentas.",
+        "Indicadores que saem do sistema e viram decisão."
+      ],
+      pergunta:"Quantas ferramentas você paga e ninguém usa direito?"
+    },
+    {
+      id:"pessoas", nome:"Pessoas", curto:"Pessoas",
+      tese:"Equipe boa é treinada, cobrada e reconhecida.",
+      thesis:"Equipe boa não nasce pronta. Ela é treinada, cobrada e reconhecida.",
+      falha:"Você contrata, treina de qualquer jeito, a pessoa sai e leva o conhecimento junto. O ciclo recomeça.",
+      trabalho:[
+        "Funções e responsabilidades: quem é dono de quê.",
+        "Treinamento próprio para cada função do escritório.",
+        "Contratação e os primeiros dias de quem chega.",
+        "Delegar com cobrança, feedback e reconhecimento.",
+        "Rotina de reuniões e metas para advogados e administrativo."
+      ],
+      pergunta:"Cada pessoa da sua equipe sabe exatamente o que se espera dela?"
+    },
+    {
+      id:"financeiro", nome:"Financeiro", curto:"Financeiro",
+      tese:"Faturar não é o mesmo que lucrar.",
+      thesis:"Faturar não é o mesmo que lucrar.",
+      falha:"Entra dinheiro, mas você não sabe quanto sobra, de onde vem e para onde vai. O caixa do escritório se mistura com o seu.",
+      trabalho:[
+        "Separar as finanças do escritório das finanças pessoais.",
+        "Fluxo de caixa e previsibilidade de receita.",
+        "Honorários formados a partir de custo e margem, respeitando os limites éticos da OAB.",
+        "Indicadores básicos: receita, custos, inadimplência e ticket médio por área.",
+        "Pró-labore do dono como custo do escritório."
+      ],
+      pergunta:"Você sabe quanto o escritório lucra por mês, depois de pagar todos os custos, inclusive o seu pró-labore?"
     }
-  });
-}, { threshold: 0.1 });
-cards.forEach(c => observer.observe(c));
+  ];
+
+  var QS = [
+    {id:"m1",p:"mentalidade",t:"Eu me comporto como dono de uma empresa, e não só como o advogado mais ocupado do escritório."},
+    {id:"m2",p:"mentalidade",t:"Os valores e as regras do escritório estão claros para a equipe, e não só na minha cabeça."},
+    {id:"p1",p:"processos",  t:"Prazos e andamentos são controlados por rotina, e não pela memória de alguém."},
+    {id:"p2",p:"processos",  t:"Se eu ficar 15 dias fora, o escritório continua funcionando como eu gostaria."},
+    {id:"t1",p:"tecnologia", t:"As informações de clientes e processos ficam em um só lugar, organizadas."},
+    {id:"t2",p:"tecnologia", t:"As ferramentas que eu pago são realmente usadas pela equipe."},
+    {id:"e1",p:"pessoas",    t:"Cada pessoa da equipe sabe exatamente o que se espera dela."},
+    {id:"e2",p:"pessoas",    t:"Quem chega ao escritório passa por um treinamento estruturado antes de assumir a função."},
+    {id:"f1",p:"financeiro", t:"Todo mês eu sei quanto o escritório lucra depois de pagar todos os custos e o meu pró-labore."},
+    {id:"f2",p:"financeiro", t:"As finanças do escritório estão separadas das minhas finanças pessoais."}
+  ];
+
+  var OPTS = [{v:0,l:"Não"},{v:1,l:"Em parte"},{v:2,l:"Sim"}];
+  var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+  function $(id){ return document.getElementById(id); }
+  function pillar(id){ for(var i=0;i<PILLARS.length;i++) if(PILLARS[i].id===id) return PILLARS[i]; return null; }
+
+  /* ── EXPLORADOR ────────────────────── */
+  var tabsEl = $("tabs"), panelEl = $("panel");
+  var current = PILLARS[0].id;
+
+  if(tabsEl && panelEl){
+    tabsEl.innerHTML = PILLARS.map(function(p){
+      return '<button type="button" class="tab" role="tab" id="tab-'+p.id+'" data-id="'+p.id+'" aria-controls="panel" aria-selected="false" tabindex="-1">'+
+        '<span class="nm"><span class="nm-full">'+p.nome+'</span><span class="nm-short">'+p.curto+'</span></span>'+
+        '<span class="ts">'+p.tese+'</span></button>';
+    }).join('');
+
+    function renderPanel(p){
+      panelEl.setAttribute("aria-labelledby","tab-"+p.id);
+      panelEl.innerHTML =
+        '<p class="mono">Pilar</p>'+
+        '<h3 style="margin-top:4px">'+p.nome+'</h3>'+
+        '<p class="thesis">'+p.thesis+'</p>'+
+        '<div class="block"><p class="mono">Quando esse pilar falha</p><p class="txt" style="margin-top:6px">'+p.falha+'</p></div>'+
+        '<div class="block"><p class="mono">O que será trabalhado</p><ul>'+
+          p.trabalho.map(function(x){ return '<li>'+x+'</li>'; }).join('')+
+        '</ul></div>'+
+        '<div class="ask"><p class="mono">A pergunta do dono</p><p class="q">'+p.pergunta+'</p></div>';
+    }
+
+    function selectTab(id, focusTab){
+      current = id;
+      var btns = tabsEl.querySelectorAll(".tab");
+      for(var i=0;i<btns.length;i++){
+        var on = btns[i].getAttribute("data-id")===id;
+        btns[i].setAttribute("aria-selected", on ? "true" : "false");
+        btns[i].setAttribute("tabindex", on ? "0" : "-1");
+        if(on && focusTab){ btns[i].focus(); if(btns[i].scrollIntoView) btns[i].scrollIntoView({block:"nearest",inline:"nearest"}); }
+      }
+      renderPanel(pillar(id));
+    }
+
+    tabsEl.addEventListener("click", function(e){
+      var b = e.target.closest ? e.target.closest(".tab") : null;
+      if(b) selectTab(b.getAttribute("data-id"), false);
+    });
+
+    tabsEl.addEventListener("keydown", function(e){
+      var idx=-1, n=PILLARS.length;
+      for(var i=0;i<n;i++) if(PILLARS[i].id===current) idx=i;
+      var next=idx;
+      if(e.key==="ArrowDown"||e.key==="ArrowRight") next=(idx+1)%n;
+      else if(e.key==="ArrowUp"||e.key==="ArrowLeft") next=(idx-1+n)%n;
+      else if(e.key==="Home") next=0;
+      else if(e.key==="End") next=n-1;
+      else return;
+      e.preventDefault();
+      selectTab(PILLARS[next].id, true);
+    });
+
+    selectTab(current, false);
+  }
+
+  /* ── DIAGNÓSTICO ───────────────────── */
+  var quizEl=$("quiz"), rowsEl=$("rows"), sumEl=$("summary");
+  var ans={};
+
+  if(quizEl && rowsEl && sumEl){
+    quizEl.innerHTML = PILLARS.map(function(p){
+      var items = QS.filter(function(q){ return q.p===p.id; }).map(function(q){
+        return '<div class="q-item"><p id="qt-'+q.id+'">'+q.t+'</p>'+
+          '<div class="opts" role="radiogroup" aria-labelledby="qt-'+q.id+'">'+
+          OPTS.map(function(o){
+            return '<label class="pill"><input type="radio" name="'+q.id+'" value="'+o.v+'"><span>'+o.l+'</span></label>';
+          }).join('')+'</div></div>';
+      }).join('');
+      return '<fieldset><legend>'+p.nome+'</legend>'+items+'</fieldset>';
+    }).join('');
+
+    function statusOf(s){ return s<=1?"Ponto de atenção":s<=3?"Em construção":"Estruturado"; }
+
+    function scoreOf(pid){
+      var s=0,n=0;
+      QS.forEach(function(q){ if(q.p===pid&&ans.hasOwnProperty(q.id)){s+=ans[q.id];n++;} });
+      return {s:s,n:n};
+    }
+
+    function renderScore(){
+      var total=Object.keys(ans).length;
+      rowsEl.innerHTML = PILLARS.map(function(p){
+        var r=scoreOf(p.id), done=r.n===2, pct=done?Math.round((r.s/4)*100):0, low=done&&r.s<=1;
+        return '<div class="row">'+
+          '<div class="top"><span class="nm">'+p.curto+'</span>'+
+          '<span class="val">'+(r.n===0?"sem resposta":r.s+" de 4")+'</span></div>'+
+          '<div class="track"><div class="fill'+(low?' low':'')+'" style="width:'+pct+'%"></div></div>'+
+          '<div class="row-status">'+(done?statusOf(r.s):(r.n===0?"Responda as duas afirmações":"Falta uma afirmação"))+'</div></div>';
+      }).join('');
+
+      if(total<QS.length){
+        sumEl.innerHTML='<p>'+total+' de '+QS.length+' afirmações respondidas.</p>';
+        return;
+      }
+
+      var min=99;
+      PILLARS.forEach(function(p){ var r=scoreOf(p.id); if(r.s<min) min=r.s; });
+      var lows=PILLARS.filter(function(p){ return scoreOf(p.id).s===min; });
+      var html;
+
+      if(min===4){
+        html='<p><b>Os cinco pilares aparecem estruturados.</b> O desafio agora é sustentar e medir.</p>'+
+          '<p class="small">Esta autoavaliação não substitui uma análise detalhada do seu escritório.</p>';
+      } else {
+        var nomes=lows.map(function(p){return p.curto;}).join(", ");
+        html='<p><b>'+(lows.length>1?'Pilares para olhar primeiro: ':'Pilar para olhar primeiro: ')+nomes+'.</b></p>'+
+          '<p class="small">Esta autoavaliação não substitui uma análise detalhada do seu escritório.</p>'+
+          '<div class="actions">'+
+          lows.slice(0,3).map(function(p){return '<button type="button" class="btn" data-go="'+p.id+'">Ver '+p.curto+'</button>';}).join('')+
+          '</div>';
+      }
+      html+='<div class="actions"><button type="button" class="btn ghost" id="reset">Recomeçar</button></div>';
+      sumEl.innerHTML=html;
+    }
+
+    quizEl.addEventListener("change",function(e){
+      var t=e.target;
+      if(t&&t.type==="radio"){ ans[t.name]=parseInt(t.value,10); renderScore(); }
+    });
+
+    sumEl.addEventListener("click",function(e){
+      var b=e.target.closest?e.target.closest("button"):null;
+      if(!b) return;
+      var go=b.getAttribute("data-go");
+      if(go){
+        selectTab(go,false);
+        var sec=$("pilares");
+        if(sec) sec.scrollIntoView({behavior:reduced?"auto":"smooth",block:"start"});
+      } else if(b.id==="reset"){
+        ans={};
+        var inputs=quizEl.querySelectorAll("input");
+        for(var i=0;i<inputs.length;i++) inputs[i].checked=false;
+        renderScore();
+        var dg=$("diagnostico");
+        if(dg) dg.scrollIntoView({behavior:reduced?"auto":"smooth",block:"start"});
+      }
+    });
+
+    // renderizar placar inicial imediatamente
+    renderScore();
+  }
+
+  /* ── TURMA ─────────────────────────── */
+  var turmaDl=$("turma-dl");
+  if(turmaDl){
+    var FIELDS=[
+      ["Data","data"],["Formato","formato"],["Horário","horario"],
+      ["Local","local"],["Vagas","vagas"],["Investimento","investimento"]
+    ];
+    turmaDl.innerHTML=FIELDS.map(function(f){
+      var v=TURMA[f[1]];
+      return '<dt class="mono">'+f[0]+'</dt><dd>'+(v?v:'<span class="tbd">A confirmar</span>')+'</dd>';
+    }).join('');
+  }
+
+  /* ── PIX ───────────────────────────── */
+  var pixEl=$("pixcode"), msgEl=$("copymsg"), copyBtn=$("copypix");
+  if(pixEl){ pixEl.value=PIX; }
+
+  if(copyBtn && pixEl && msgEl){
+    copyBtn.addEventListener("click",function(){
+      function fallback(){
+        pixEl.focus(); pixEl.select();
+        msgEl.textContent="Código selecionado — use Copiar no seu aparelho.";
+      }
+      try{
+        navigator.clipboard.writeText(PIX).then(function(){
+          msgEl.textContent="✓ Código Pix copiado!";
+          setTimeout(function(){ msgEl.textContent=''; },3000);
+        },fallback);
+      }catch(err){ fallback(); }
+    });
+  }
+
+  /* ── SCROLL REVEAL ──────────────────── */
+  var revealEls=document.querySelectorAll(".reveal");
+  if(revealEls.length){
+    var revObs=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add("visible");
+          revObs.unobserve(entry.target);
+        }
+      });
+    },{threshold:.12,rootMargin:"0px 0px -30px 0px"});
+    revealEls.forEach(function(el){ revObs.observe(el); });
+  }
+
+})();
 </script>
 
 </body>
